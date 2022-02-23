@@ -19,7 +19,7 @@ if (mysqli_num_rows($r) > 0) {
 
   echo '
   <br>
-  <h1 class="text-center">TV Shows1</h1>
+  <h1 class="text-center">TV Shows</h1>
   <div class="container-fluid">
   <hr>
   <div class="row">';
