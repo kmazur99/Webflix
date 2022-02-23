@@ -1,0 +1,165 @@
+/* Background color */
+
+body {
+    background-color: #2B2B2B;
+}
+
+
+/* Specifying fonts for headers and body text */
+
+h1,
+h2,
+h3,
+h4,
+h6 {
+    font-family: 'Dosis', sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+h5 {
+    padding-top: 15px;
+    font-family: 'Dosis', sans-serif;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #b9b8b8;
+}
+
+a {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff !important;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+a:hover {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff !important;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+label {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+}
+
+input {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+}
+
+.blockquote-footer {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #b9b8b8;
+}
+
+footer {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #b9b8b8;
+}
+
+small {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+}
+
+hr {
+    background-color: #C72606;
+}
+
+.form-control {
+    background-color: #2B2B2B;
+    color: #fff;
+    border: none;
+}
+
+
+/* Navbar styling*/
+
+.navbar {
+    background-color: #171717 !important;
+}
+
+.navbar .navbar-nav li a {
+    color: #fff !important;
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+    text-transform: uppercase;
+}
+
+.navbar .nav-item .dropdown-menu {
+    background-color: #171717 !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item {
+    color: #fff !important;
+}
+
+.navbar .nav-item .dropdown-menu .dropdown-item:hover {
+    color: #2B2B2B !important;
+    background-color: transparent;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    text-shadow: #000;
+}
+
+
+/* Styling elements */
+
+button {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    background-color: #C72606 !important;
+    border: none !important;
+}
+
+.card {
+    background-color: transparent !important;
+}
+
+.card-img-top {
+    box-shadow: #ffffff5b 0px 0px 25px;
+}
+
+.card-dark {
+    background-color: #171717 !important;
+}
+
+.list-group-item {
+    background-color: #2B2B2B !important;
+}
+
+.btn {
+    background-color: #C72606 !important;
+}
+
+.modal-content {
+    background-color: #171717 !important;
+}
+
+.alert {
+    background-color: #161616 !important;
+    border-color: #4c4c4c !important;
+}
+
+.alert-heading {
+    color: #fff;
+}
+
+.form-box {
+    padding-left: 1.25rem !important;
+}
+
+.form-body {
+    padding-left: 0 !important;
+}
