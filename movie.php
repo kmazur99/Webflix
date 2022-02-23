@@ -52,8 +52,6 @@ if (mysqli_num_rows($r) == 1) {
         </div> 
         <div class="col-sm-12 col-md-4">
         <p>' . $row['further_info'] . '</p>
-        </div>
-        <div class="col-sm-12 col-md-4">
         <h4>Watch</h4>
         <hr>
         <h2> 
