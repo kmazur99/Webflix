@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
 if ($isLoggedIn) {
  
 echo '
-<nav class="navbar navbar-expand-sm bg-dark ">
+<nav class="navbar sticky-top navbar-expand-sm bg-dark ">
         <a class="navbar-brand" href="home.php"><span style="color:#C72606;">Webflix</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
