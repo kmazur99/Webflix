@@ -20,15 +20,15 @@ if (mysqli_num_rows($r) > 0) {
   echo '
   <title>Movies - Webflix</title>
   <br>
-  <h1 class="text-center">Movies</h1>
-  <div class="ccontainer-fluid">
+  <div class="container-fluid">
+  <h1>Movies</h1>
   <hr>
   <div class="row">';
   # Display body section.
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
-     <div class="col-md" style="margin-top: 2rem";>
-		 <div class="card border-0 " style="width: 15rem; float: none; margin: 0 auto;">
+     <div class="col" style="margin-top: 2rem";>
+		 <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
 			  <div class="card text-center border-0">
         <a href="movie.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
 				  <h5 class="card-title">' . $row['movie_title'] . '</h5>
