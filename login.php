@@ -1,5 +1,4 @@
   <?php # DISPLAY COMPLETE LOGIN PAGE.
-  # Include HTML static file login.html
   include('navbar.php');
   include('includes/bootstrap.html');
 
@@ -18,8 +17,9 @@
 <footer">
   </footer></div> ';
   }
-  echo'
+?>
   <br>
+  <title>Sign In - Webflix</title>
   <div class="container">
     <div class="row">
       <div class="col-sm">
@@ -65,8 +65,5 @@
   </div>
   </div>
   </div>
-  ';
 
-  
-  ?>
   

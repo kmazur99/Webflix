@@ -12,13 +12,13 @@ include('navbar.php');
 # Open database connection.
 require('connect_db.php');
 
-
 # Retrieve movies from 'movie' database table.
 $q = "SELECT * FROM movie";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
+  <title>Webflix</title>
   <br>
   <h1 class="text-center">What\'s On</h1>
   <div class="container-fluid">

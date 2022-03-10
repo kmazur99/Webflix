@@ -82,18 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $q = "INSERT INTO users (first_name, last_name, email, pass, card_number, exp_month, exp_year, cvv, reg_date) VALUES ('$fn', '$ln', '$email', SHA2('$p',256), '$card_no', '$exp_m', '$exp_y', '$cvv', NOW() )";
     $r = @mysqli_query($link, $q);
     if ($r) {
-      
+
       $title = 'Success';
-    echo '<div class="alert alert-dark" role="alert">
+      echo '<div class="alert alert-dark" role="alert">
 	   <h4 class="alert-heading">' . $title . '</h4>
      <p>Your account has been registered successfully</p>
       ';
-      echo'
+      echo '
      <hr>
 <footer">
 <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
   </footer></div>  ';
-
     }
     # Close database connection.
     mysqli_close($link);
@@ -104,10 +103,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = 'Error';
     echo '<div class="container"><div class="alert alert-dark" role="alert">
 	   <h4 class="alert-heading">' . $title . '</h4>';
-      foreach ($errors as $msg) {
-        echo " <p> $msg </p>";
-      }
-      echo'
+    foreach ($errors as $msg) {
+      echo " <p> $msg </p>";
+    }
+    echo '
 <footer">
   </footer></div></div>';
     # Close database connection.
@@ -116,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 include('includes/bootstrap.html');
 ?>
-
+<title>Register - Webflix</title>
 <br>
 <div class="container">
   <div class="row">
@@ -124,60 +123,61 @@ include('includes/bootstrap.html');
 
     </div>
     <div class="col-sm">
-    <div class="card card-dark mb-3">
-      <div class="card-header"> 
-      <h1 style="text-align: center">Register</h1>
-      <hr>
+      <div class="card card-dark mb-3">
+        <div class="card-header">
+          <h1 style="text-align: center">Register</h1>
+          <hr>
+        </div>
+        <div class="card-body">
+          <form action="register.php" method="post">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="exampleInputName">First Name</label>
+                <input type="text" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="exampleLastName">Last Name</label>
+                <input type="text" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" size="40" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="examplePassword">Password</label>
+              <input type="password" class="form-control" id="examplePassword" name="pass1" size="30" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="examplePassword2">Confirm Password</label>
+              <input type="password" class="form-control" id="examplePassword2" name="pass2" size="30" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleCardNumber">Card number</label>
+              <input type="number" class="form-control" id="exampleCardNumber" name="card_number" size="25" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="exampleExpiryMonth">Expiry Month</label>
+                <input type="number" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="exampleExpiryYear">Expiry Year</label>
+                <input type="number" class="form-control" id="exampleExpiryYear" placeholder="YY" name="exp_year" size="2" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="exampleCvv">CVV</label>
+                <input type="number" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
+              </div>
+            </div>
+            <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
+            <div style="text-align:center">
+            <br>
+              <button type="submit" class="btn btn-primary" name="register">Create Account</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="card-body">
-      <form action="register.php" method="post">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="exampleInputName">First Name</label>
-            <input type="text" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="exampleLastName">Last Name</label>
-            <input type="text" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" size="40" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
-        </div>
-        <div class="form-group">
-          <label for="examplePassword">Password</label>
-          <input type="password" class="form-control" id="examplePassword" name="pass1" size="30" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
-        </div>
-        <div class="form-group">
-          <label for="examplePassword2">Confirm Password</label>
-          <input type="password" class="form-control" id="examplePassword2" name="pass2" size="30" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
-        </div>
-        <div class="form-group">
-          <label for="exampleCardNumber">Card number</label>
-          <input type="number" class="form-control" id="exampleCardNumber" name="card_number" size="25" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="exampleExpiryMonth">Expiry Month</label>
-            <input type="number" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="exampleExpiryYear">Expiry Year</label>
-            <input type="number" class="form-control" id="exampleExpiryYear" placeholder="YY" name="exp_year" size="2" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="exampleCvv">CVV</label>
-            <input type="number" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
-          </div>
-        </div>
-</br>
-        <div style="text-align:center">
-          <button type="submit" class="btn btn-primary" name="register">Submit</button>
-        </div>
-      </form>
-      </div>
-    </div>
     </div>
     <div class="col-sm">
 

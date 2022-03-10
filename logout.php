@@ -15,4 +15,4 @@ $_SESSION = array();
 # Destroy the session.
 session_destroy();
 
-header("Location: home.php");
+header("Location: login.php");

@@ -18,6 +18,7 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
+  <title>TV Shows - Webflix</title>
   <br>
   <h1 class="text-center">TV Shows</h1>
   <div class="container-fluid">

@@ -133,6 +133,7 @@ button {
 
 .card-dark {
     background-color: #171717 !important;
+    border-color: #fff;
 }
 
 .list-group-item {

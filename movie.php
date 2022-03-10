@@ -35,6 +35,7 @@ if (mysqli_num_rows($r) == 1) {
 
     if ($subscription == 'Premium') { # Only display for premium users
       echo '
+      <title>Webflix</title>
         <br>
         <div class="container-fluid">
 			  <h1 class="display-4">' . $row['movie_title'] . '</h1>
