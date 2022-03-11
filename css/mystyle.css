@@ -164,3 +164,10 @@ button {
 .form-body {
     padding-left: 0 !important;
 }
+
+.list-group-item {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+}

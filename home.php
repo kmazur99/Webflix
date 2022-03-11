@@ -62,7 +62,7 @@ if (mysqli_num_rows($r) > 0) {
      <div class="col" style="margin-top: 2rem";>
 		 <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
 			  <div class="card text-center border-0">
-        <a href="movie_coming_soon.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
+        <a href="tv_show.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
 				  <h5 class="card-title">' . $row['movie_title'] . '</h5>
 			   </div>
       </div>

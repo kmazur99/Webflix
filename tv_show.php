@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
 if (isset($_GET['id'])) $id = $_GET['id'];
 
 # Retrieve selective item data from 'movie' database table. 
-$q = "SELECT * FROM movie WHERE id = $id";
+$q = "SELECT * FROM coming_soon WHERE id = $id";
 $r = mysqli_query($link, $q);
 
 if (mysqli_num_rows($r) == 1) {
@@ -50,6 +50,7 @@ if (mysqli_num_rows($r) == 1) {
         picture-in-picture"   allowfullscreen>
         </iframe>
         </div>
+        
         </div> 
         <div class="col-sm-12 col-md-4">
         <h1>' . $row['movie_title'] . '</h1>
@@ -67,7 +68,7 @@ if (mysqli_num_rows($r) == 1) {
               <td><h6>' .$row['movie_title'].'</h6></td>
               </tr>
               <tr>
-              <td><h6>Duration</h6></td>
+              <td><h6>No. of seasons</h6></td>
               <td><h6>' .$row['movie_title'].'</h6></td>
               </tr>
               <tr>
@@ -76,7 +77,9 @@ if (mysqli_num_rows($r) == 1) {
               </tr>
           </tbody>
         </table>
-        <a href=""> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
+        <hr>
+        <a href=""> <button type="button" style="margin-right:20px;" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous episode</h3></button></a> 
+        <a href=""> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next episode</h3></button></a>
         </div> 
         ';
   } else {
@@ -115,7 +118,7 @@ if (mysqli_num_rows($r) == 1) {
               <td><h6>' .$row['movie_title'].'</h6></td>
               </tr>
               <tr>
-              <td><h6>Duration</h6></td>
+              <td><h6>No. of seasons</h6></td>
               <td><h6>' .$row['movie_title'].'</h6></td>
               </tr>
               <tr>
