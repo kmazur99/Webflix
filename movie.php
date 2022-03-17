@@ -50,6 +50,15 @@ if (mysqli_num_rows($r) == 1) {
         picture-in-picture"   allowfullscreen>
         </iframe>
         </div>
+        <div class="embed-responsive embed-responsive-16by9">
+	      <iframe class="embed-responsive-item" src="https://torranforran.to/rNsNYbpcAr77RQmlr46FCg==/UEFmbVFpeHI3azhVNUtFcnB3dmhtdz09?lang=en"   
+        frameborder="0" allow="accelerometer; 
+        autoplay; 
+        encrypted-media; 
+        gyroscope; 
+        picture-in-picture"   allowfullscreen>
+        </iframe>
+        </div>
         </div> 
         <div class="col-sm-12 col-md-4">
         <h1>' . $row['movie_title'] . '</h1>
@@ -76,7 +85,7 @@ if (mysqli_num_rows($r) == 1) {
               </tr>
           </tbody>
         </table>
-        <a href=""> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
+        <a href="watch_movie.php"> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
         </div> 
         ';
   } else {
