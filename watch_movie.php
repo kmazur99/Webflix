@@ -19,15 +19,13 @@ $r = mysqli_query($link, $q);
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
     echo '
-    <div class="container-fluid">
     <div id="mv-info">
     <div id="content-embed" style="">
     <iframe class="embed-responsive-item" src=' . $row['link'] . ' 
     frameborder="no" scrolling="no" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
-          </iframe>
-          </div>
+    </iframe>
     </div>
-          </div>
+    </div>
         ';
 
 
