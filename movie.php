@@ -3,8 +3,6 @@ include('navbar.php');
 # Access session.
 session_start();
 
-unset($_SESSION['cart']); // prevent adding more than 1 movie to the cart at once
-
 # Check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 
@@ -30,7 +28,11 @@ if (mysqli_num_rows($r) == 1) {
 
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
-  $_SESSION['cart'][$id] = array('quantity' => 1, 'price' => $row['mov_price']);
+  # Retrieve selective item data from 'categories' database table. 
+  $query = "SELECT * FROM categories WHERE category_id = {$row['category']}";
+  $data = mysqli_query($link, $query);
+
+  $category = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
   if ($subscription == 'Premium') { # Only display for premium users
     echo '
@@ -58,22 +60,22 @@ if (mysqli_num_rows($r) == 1) {
         <table class="table table-striped">
 
           <tbody>
-              <tr>
-              <td><h6>Categories</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
-              </tr>
-              <tr>
-              <td><h6>Released</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
-              </tr>
-              <tr>
-              <td><h6>Duration</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
-              </tr>
-              <tr>
-              <td><h6>Language</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
-              </tr>
+          <tr>
+          <td><h6>Genre(s)</h6></td>
+          <td><h6>' . $category['category_name'] . '</h6></td>
+          </tr>
+          <tr>
+          <td><h6>Released</h6></td>
+          <td><h6>' . $row['release_date'] . '</h6></td>
+          </tr>
+          <tr>
+          <td><h6>Duration</h6></td>
+          <td><h6>' . $row['duration'] . ' minutes</h6></td>
+          </tr>
+          <tr>
+          <td><h6>Language</h6></td>
+          <td><h6>' . $row['languages'] . '</h6></td>
+          </tr>
           </tbody>
         </table>
         <a href="watch_movie.php?id=' . $row['id'] . '"> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
@@ -107,20 +109,20 @@ if (mysqli_num_rows($r) == 1) {
 
           <tbody>
               <tr>
-              <td><h6>Categories</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>Genre(s)</h6></td>
+              <td><h6>' . $category['category_name'] . '</h6></td>
               </tr>
               <tr>
               <td><h6>Released</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' . $row['release_date'] . '</h6></td>
               </tr>
               <tr>
               <td><h6>Duration</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' . $row['duration'] . ' minutes</h6></td>
               </tr>
               <tr>
               <td><h6>Language</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' . $row['languages'] . '</h6></td>
               </tr>
           </tbody>
         </table>
