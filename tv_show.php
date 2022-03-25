@@ -23,12 +23,21 @@ if (mysqli_num_rows($result) > 0) {
 if (isset($_GET['id'])) $id = $_GET['id'];
 
 # Retrieve selective item data from 'movie' database table. 
-$q = "SELECT * FROM coming_soon WHERE id = $id";
+$q = "SELECT * FROM tv_show WHERE id = $id";
 $r = mysqli_query($link, $q);
 
 if (mysqli_num_rows($r) == 1) {
 
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+
+  $season = 1;
+  $episode = 1;
+
+  # Retrieve selective item data from 'categories' database table. 
+  $query = "SELECT * FROM categories WHERE category_id = {$row['category']}";
+  $data = mysqli_query($link, $query);
+
+  $category = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
   $_SESSION['cart'][$id] = array('quantity' => 1, 'price' => $row['mov_price']);
 
@@ -53,7 +62,7 @@ if (mysqli_num_rows($r) == 1) {
         
         </div> 
         <div class="col-sm-12 col-md-4">
-        <h1>' . $row['movie_title'] . '</h1>
+        <h1>' . $row['show_title'] . '</h1>
         <hr>
         <p>' . $row['further_info'] . '</p>
         <table class="table table-striped">
@@ -61,25 +70,28 @@ if (mysqli_num_rows($r) == 1) {
           <tbody>
               <tr>
               <td><h6>Categories</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' .$category['category_name']. '</h6></td>
               </tr>
               <tr>
               <td><h6>Released</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' .$row['release_date'].'</h6></td>
               </tr>
               <tr>
               <td><h6>No. of seasons</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' .$row['seasons'].'</h6></td>
+              </tr>
+              <tr>
+              <td><h6>No. of episodes</h6></td>
+              <td><h6>' .$row['episodes'].'</h6></td>
               </tr>
               <tr>
               <td><h6>Language</h6></td>
-              <td><h6>' .$row['movie_title'].'</h6></td>
+              <td><h6>' .$row['languages'].'</h6></td>
               </tr>
           </tbody>
         </table>
         <hr>
-        <a href=""> <button type="button" style="margin-right:20px;" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous episode</h3></button></a> 
-        <a href=""> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next episode</h3></button></a>
+        <a href="watch_show.php?id=' . $row['id'] . '&season=' .$season. '&episode=' .$episode.'"> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
         </div> 
         ';
   } else {

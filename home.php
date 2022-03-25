@@ -43,8 +43,8 @@ else {
   echo '<p>There are currently no movies showing.</p>';
 }
 
-# Retrieve movies from 'coming_soon' database table.
-$q = "SELECT * FROM coming_soon";
+# Retrieve tv shows
+$q = "SELECT * FROM tv_show";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
@@ -63,7 +63,7 @@ if (mysqli_num_rows($r) > 0) {
 		 <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
 			  <div class="card text-center border-0">
         <a href="tv_show.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
-				  <h5 class="card-title">' . $row['movie_title'] . '</h5>
+				  <h5 class="card-title">' . $row['show_title'] . '</h5>
 			   </div>
       </div>
       </div>
@@ -76,7 +76,7 @@ if (mysqli_num_rows($r) > 0) {
 
 # Or display message.
 else {
-  echo '<p>There are currently no movies coming to the cinema.</p>';
+  echo '<p>There are currently no tv shows to display.</p>';
 }
 
 include('includes/bootstrap.html');
