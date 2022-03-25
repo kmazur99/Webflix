@@ -1,10 +1,12 @@
 <?php
+
 include('navbar.php');
+
 # Access session.
 session_start();
 
-# Check if user is logged in
-$isLoggedIn = isset($_SESSION['user_id']);
+# Check if user is signed in
+include('redirect.php');
 
 # Open database connection.
 require('connect_db.php');
@@ -17,10 +19,10 @@ if (mysqli_num_rows($result) > 0) {
   }
 }
 
-# Get passed product id and assign it to a variable.
+# Get movie ID
 if (isset($_GET['id'])) $id = $_GET['id'];
 
-# Retrieve selective item data from 'movie' database table. 
+# Retrieve data from 'movie' database table. 
 $q = "SELECT * FROM movie WHERE id = $id";
 $r = mysqli_query($link, $q);
 
