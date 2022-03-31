@@ -20,7 +20,7 @@ $r = mysqli_query($link, $q);
 
     echo '
     <div id="mv-info">
-    <div id="content-embed" style="">
+    <div id="content-embed">
     <iframe class="embed-responsive-item" src=' . $row['link'] . ' 
     frameborder="no" scrolling="no" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
     </iframe>

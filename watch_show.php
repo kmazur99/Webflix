@@ -22,9 +22,9 @@ if (isset($_GET['episode'])) $episode = $_GET['episode'];
 
     echo '
     <div id="mv-info">
-    <div id="content-embed" style="">
+    <div id="content-embed">
     <iframe class="embed-responsive-item" src=' . $row['link'] . '&s=' .$season. '&e=' .$episode.' 
-    frameborder="no" scrolling="no" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
+    frameborder="no" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
     </iframe>
     </div>
     </div>

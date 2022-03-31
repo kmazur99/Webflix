@@ -46,9 +46,8 @@ if (mysqli_num_rows($r) == 1) {
         </div>
 	      <div class="col-sm-12 col-md-6">
 	      <div class="embed-responsive embed-responsive-16by9">
-	      <iframe class="embed-responsive-item" src=' . $row['preview'] . '   
-        frameborder="0" allow="accelerometer; 
-        autoplay; 
+	      <iframe class="embed-responsive-item" src=' . $row['preview'] . '?autoplay=1   
+        frameborder="0" allow="autoplay; 
         encrypted-media; 
         gyroscope; 
         picture-in-picture"   allowfullscreen>

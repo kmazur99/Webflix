@@ -26,18 +26,20 @@ echo '
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="movies.php">Movies</a>
             </li>     
             <li class="nav-item">
               <a class="nav-link" href="tv_shows.php">TV Shows</a>
-            </li>  
+            </li> 
+            </ul>
+            <ul class="navbar-nav">
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                ' . $_SESSION['first_name'] . '
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="user.php">Account settings</a>
                 <a class="dropdown-item" href="logout.php">Sign out</a>
               </div>
