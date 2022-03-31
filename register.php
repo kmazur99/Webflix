@@ -47,6 +47,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $card_no = mysqli_real_escape_string($link, trim($_POST['card_number']));
   }
 
+  if (empty($_POST['contact_number'])) {
+    $errors[] = 'Enter your contact Number.';
+  } else {
+    $contact_no = mysqli_real_escape_string($link, trim($_POST['contact_number']));
+  }
+
+  if (empty($_POST['country'])) {
+    $errors[] = 'Enter your country.';
+  } else {
+    $country = mysqli_real_escape_string($link, trim($_POST['country']));
+  }
+
+  if (empty($_POST['DOB'])) {
+    $errors[] = 'Enter your date of birth.';
+  } else {
+    $DOB = mysqli_real_escape_string($link, trim($_POST['DOB']));
+  }
+
   if (empty($_POST['exp_month'])) {
     $errors[] = 'Enter your Card Exp Month.';
   } else {
@@ -79,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   # On success register user inserting into 'users' database table.
   if (empty($errors)) {
-    $q = "INSERT INTO users (first_name, last_name, email, pass, card_number, exp_month, exp_year, cvv, reg_date) VALUES ('$fn', '$ln', '$email', SHA2('$p',256), '$card_no', '$exp_m', '$exp_y', '$cvv', NOW() )";
+    $q = "INSERT INTO users (first_name, last_name, DOB, email, contact_number, country, pass, card_number, exp_month, exp_year, cvv, reg_date) VALUES ('$fn', '$ln', '$DOB', '$email', '$contact_no', '$country', SHA2('$p',256), '$card_no', '$exp_m', '$exp_y', '$cvv', NOW() )";
     $r = @mysqli_query($link, $q);
     if ($r) {
 
@@ -92,8 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      <hr>
 <footer">
 <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
-  </footer></div>  ';
+  </footer></div> 
+ ';
+
     }
+    
     # Close database connection.
     mysqli_close($link);
   }
@@ -129,7 +150,7 @@ include('includes/bootstrap.html');
           <hr>
         </div>
         <div class="card-body">
-          <form action="register.php" method="post">
+          <form name="RegisterForm" id="RegisterForm" action="register.php" method="post">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="exampleInputName">First Name</label>
@@ -144,13 +165,27 @@ include('includes/bootstrap.html');
               <label for="exampleInputEmail1">Email address</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" size="40" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
             </div>
-            <div class="form-group">
+            <div class="form-row">
+              <div class="form-group col-md-6">
               <label for="examplePassword">Password</label>
               <input type="password" class="form-control" id="examplePassword" name="pass1" size="30" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
               <label for="examplePassword2">Confirm Password</label>
               <input type="password" class="form-control" id="examplePassword2" name="pass2" size="30" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="examplePhoneNo">Contact number</label>
+              <input type="number" class="form-control" id="examplePhoneNo" name="contact_number" size="20" value="<?php if (isset($_POST['contact_number'])) echo $_POST['contact_number']; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleCountry">Country</label>
+              <input type="text" class="form-control" id="exampleCountry" name="country" size="30" value="<?php if (isset($_POST['country'])) echo $_POST['country']; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleDOB">DOB</label>
+              <input type="date" max="2022-01-01" class="form-control" id="exampleDOB" name="DOB" size="30" value="<?php if (isset($_POST['DOB'])) echo $_POST['DOB']; ?>" required>
             </div>
             <div class="form-group">
               <label for="exampleCardNumber">Card number</label>
@@ -184,3 +219,11 @@ include('includes/bootstrap.html');
     </div>
   </div>
 </div>
+
+<script>
+  function clearForm(){
+	document.getElementById('exampleInputName').value = '';
+      		document.getElementById('exampleLastName').value = '';
+      		document.getElementById('exampleInputEmail1').value = '';
+  }
+</script>

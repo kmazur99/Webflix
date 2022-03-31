@@ -95,8 +95,6 @@ if (mysqli_num_rows($r) > 0) {
 </div>
 </div>
 </div>
-</div>
-</div>
 
 ';
     }
@@ -110,8 +108,6 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
         echo '
-        <div class="container">
-        <div class="row">
             <div class="col-sm">
             <div class="card card-dark mb-3">
             <div class="card-header"> 
