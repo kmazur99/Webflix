@@ -1,0 +1,3 @@
+Forgot password
+    - check if email exists in the database
+    - password reset form

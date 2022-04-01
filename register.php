@@ -1,7 +1,10 @@
 <?php
 
-# Include navbar
-include('navbar.php');
+echo '
+  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #171717 !important;">
+          <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
+        </nav>
+  ';
 
 # Check form submitted.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

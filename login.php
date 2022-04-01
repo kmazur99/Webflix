@@ -1,6 +1,11 @@
   <?php # DISPLAY COMPLETE LOGIN PAGE.
-  include('navbar.php');
   include('includes/bootstrap.html');
+
+  echo '
+  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #171717 !important;">
+          <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
+        </nav>
+  ';
 
   # Display any error messages if present.
   if (isset($errors) && !empty($errors)) {
@@ -43,7 +48,7 @@
                 <input type="password" class="form-control" id="password" name="pass" size="30" required>
               </div>
               <div class="form-group">
-                <a href="#">Forgot password?</a>
+                <a href="forgot_password.php">Forgot password?</a>
                 <br>
                 <br>
                 <a>New to Webflix? </a><a href="register.php"><span style="color:#C72606;">Sign up now</span></a>
