@@ -3,7 +3,6 @@
 # Include navbar
 include('navbar.php');
 
-
 # Check form submitted.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   # Connect to the database.
@@ -34,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST['pass1'])) {
     if ($_POST['pass1'] != $_POST['pass2']) {
       $errors[] = 'Passwords do not match.';
+      unset($_POST['pass1'], $_POST['pass2']);
     } else {
       $p = mysqli_real_escape_string($link, trim($_POST['pass1']));
     }
@@ -87,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (empty($errors)) {
     $q = "SELECT user_id FROM users WHERE email='$email'";
     $r = @mysqli_query($link, $q);
+    unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
     $title = 'Email already registered';
     if (mysqli_num_rows($r) != 0) $errors[] = 'An account is already registered with this email address
     <hr>
@@ -102,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($r) {
 
       $title = 'Success';
-      echo '<div class="alert alert-dark" role="alert">
+      echo '<div class="container"><div class="alert alert-dark" role="alert">
 	   <h4 class="alert-heading">' . $title . '</h4>
      <p>Your account has been registered successfully</p>
       ';
@@ -110,8 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      <hr>
 <footer">
 <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
-  </footer></div> 
+  </footer></div></div>
  ';
+ unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
 
     }
     
@@ -154,11 +156,11 @@ include('includes/bootstrap.html');
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="exampleInputName">First Name</label>
-                <input type="text" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
+                <input type="text" pattern="[a-zA-Z]+" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="exampleLastName">Last Name</label>
-                <input type="text" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
+                <input type="text" pattern="[a-zA-Z]+" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
               </div>
             </div>
             <div class="form-group">
@@ -181,7 +183,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="form-group">
               <label for="exampleCountry">Country</label>
-              <input type="text" class="form-control" id="exampleCountry" name="country" size="30" value="<?php if (isset($_POST['country'])) echo $_POST['country']; ?>" required>
+              <input type="text" pattern="[a-zA-Z\s]+" class="form-control" id="exampleCountry" name="country" size="30" value="<?php if (isset($_POST['country'])) echo $_POST['country']; ?>" required>
             </div>
             <div class="form-group">
               <label for="exampleDOB">DOB</label>
@@ -189,20 +191,20 @@ include('includes/bootstrap.html');
             </div>
             <div class="form-group">
               <label for="exampleCardNumber">Card number</label>
-              <input type="number" class="form-control" id="exampleCardNumber" name="card_number" size="25" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
+              <input type="text" pattern="[0-9]{16}" class="form-control" id="exampleCardNumber" name="card_number" size="16" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="exampleExpiryMonth">Expiry Month</label>
-                <input type="number" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
+                <input type="text" pattern="[0-9]{2}" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="exampleExpiryYear">Expiry Year</label>
-                <input type="number" class="form-control" id="exampleExpiryYear" placeholder="YY" name="exp_year" size="2" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
+                <input type="text" pattern="[0-9]{4}" class="form-control" id="exampleExpiryYear" placeholder="YYYY" name="exp_year" size="4" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="exampleCvv">CVV</label>
-                <input type="number" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
+                <input type="text" pattern="[0-9]{3}" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
               </div>
             </div>
             <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
@@ -221,9 +223,8 @@ include('includes/bootstrap.html');
 </div>
 
 <script>
-  function clearForm(){
-	document.getElementById('exampleInputName').value = '';
-      		document.getElementById('exampleLastName').value = '';
-      		document.getElementById('exampleInputEmail1').value = '';
-  }
+function clearForm() {
+  document.getElementById('first_name').value = '';
+}
 </script>
+

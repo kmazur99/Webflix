@@ -77,20 +77,39 @@ if (mysqli_num_rows($r) > 0) {
   </div>
     </li>
     <li class="list-group-item">
+    <div class="form-group row">
+<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '</label> 			  
+     </div>
+   </li>
+    <li class="list-group-item">
      <div class="form-group row">
 <label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
       </div>
     </li>
     <li class="list-group-item">
      <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '</label> 			  
+<label for="DOB" class="col-sm-12 col-form-label"><strong>Date of Birth: </strong>'  . $row['DOB'] . '</label> 			  
       </div>
     </li>
-
     <li class="list-group-item">
+     <div class="form-group row">
+<label for="Contact No." class="col-sm-12 col-form-label"><strong>Contact Number: </strong>'  . $row['contact_number'] . '</label> 			  
+      </div>
+    </li>
+    <li class="list-group-item">
+     <div class="form-group row">
+<label for="country" class="col-sm-12 col-form-label"><strong>Country: </strong>'  . $row['country'] . '</label> 			  
+      </div>
+    </li>
+    <li class="list-group-item">
+     <div class="form-group row">
+<label for="regDate" class="col-sm-12 col-form-label"><strong>Account created: </strong>'  . $row['reg_date'] . '</label> 			  
+      </div>
+    </li>
+    </ul>
+    <br>
 <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#password">Change Password</button>
-</li>
-</ul>
+
 </form> 
 </div>
 </div>
@@ -123,7 +142,7 @@ if (mysqli_num_rows($r) > 0) {
         </li>
                <li class="list-group-item">
          <div class="form-group row">
-    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'  . $row['card_number'] . '</label> 			  
+    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'; echo wordwrap($row['card_number'], 4, "-", true); echo '</label> 			  
           </div>
         </li>
         <li class="list-group-item">
@@ -131,11 +150,10 @@ if (mysqli_num_rows($r) > 0) {
     <label for="expDate" class="col-sm-12 col-form-label"><strong>Expiry Date: </strong>'  . $row['exp_month'] . ' / '  . $row['exp_year'] . '</label> 			  
           </div>
         </li>
-      
-        <li class="list-group-item">
+        </ul>
+        <br>
         <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#card">Update Card</button>
-        </li>
-      </ul>
+      
       </form> 
       </div>
       </div>
@@ -143,7 +161,10 @@ if (mysqli_num_rows($r) > 0) {
       </div>
       </div>
       ';
+    
     }
+
+    
 
     # Close database connection.
     mysqli_close($link);

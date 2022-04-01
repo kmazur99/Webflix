@@ -21,6 +21,7 @@ if (isset($_GET['episode'])) $episode = $_GET['episode'];
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
     echo '
+    <title>Webflix</title>
     <div id="mv-info">
     <div id="content-embed">
     <iframe class="embed-responsive-item" src=' . $row['link'] . '&s=' .$season. '&e=' .$episode.' 
