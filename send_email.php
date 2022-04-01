@@ -11,9 +11,9 @@ $message = "
 </head>
 <body>
 <h1>Password Reset</h1>
-<p>If you forgot your password, use the link below to reset your password</p>
+<p>If you forgot your password, use the link below to reset it</p>
 <p>If you did not request a password reset, please ignore this email</p>
-<a href='http://webdev.edinburghcollege.ac.uk/~HNCSOFTSA7/Webflix/reset_password.php'> <button type='button' role='button'>Reset your password</button></a>
+<a href='http://webdev.edinburghcollege.ac.uk/~HNCSOFTSA7/Webflix/reset_password.php'> <button type='button' role='button'><h1>Reset your password</h1></button></a>
 <br>
 </body>
 </html>
