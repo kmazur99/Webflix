@@ -11,7 +11,7 @@
   if (isset($errors) && !empty($errors)) {
     $title = 'Log in error';
 
-    echo '<div class="container">
+    echo '
     <div class="alert alert-dark" role="alert">
 	   <h4 class="alert-heading">' . $title . '</h4>';
     foreach ($errors as $msg) {

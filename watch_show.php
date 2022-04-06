@@ -30,12 +30,33 @@ if (isset($_GET['episode'])) $episode = $_GET['episode'];
     </div>
     </div>
         ';
-    if ($episode <= 5){
+
+    if ($episode < $row['no_episodes']){
+      $previous = $episode - 1;
+      $previous_season = $season - 1;
+      if($episode > 1){
+        echo'<a href="watch_show.php?id=' . $row['id'] . '&season=' .$season. '&episode=' .$previous.'"> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous episode</h3></button></a>|';
+      }
       echo'<a href="watch_show.php?id=' . $row['id'] . '&season=' .$season. '&episode=' .++$episode.'"> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next episode</h3></button></a>';
-    }
+      if($season > 1){
+        echo'<br><a href="watch_show.php?id=' . $row['id'] . '&season=' .$previous_season. '&episode=' .--$episode.'"> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous season</h3></button></a>|';
+      }
+      if($season < $row['seasons']){
+        echo'<br><a href="watch_show.php?id=' . $row['id'] . '&season=' .++$season. '&episode=1"> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next Season</h3></button></a>';
+      }
+      
+      
+  }
     else{
+      if($season < $row['seasons']){
+
       echo'<a href="watch_show.php?id=' . $row['id'] . '&season=' .++$season. '&episode=1"> <button type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next Season</h3></button></a>';
     }
+    else{
+      echo'<a href="home.php"><button type="button" class="btn btn-secondary" role="button"><h3>Home page</h3></button></a>';
+    }
+  }
+
 
 
 

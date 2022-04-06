@@ -193,9 +193,8 @@ include('includes/bootstrap.html');
             <div class="modal-body">
                 <form action="change-password.php" method="post">
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Confirm Email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
+                        <input type="hidden" name="email" class="form-control" placeholder="Confirm Email" value="<?php echo $_POST[$row['email']]; ?>" required>
                     </div>
-
                     <div class="form-group">
                         <input type="password" name="pass1" class="form-control" placeholder="New Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
                     </div>

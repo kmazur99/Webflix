@@ -16,13 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     # Initialize an error array.
     $errors = array();
 
-    # Check for an email address:
-    if (empty($_POST['email'])) {
-        $errors[] = 'Enter your email address.';
-    } else {
-        $e = mysqli_real_escape_string($link, trim($_POST['email']));
-    }
-
     # Check for a password and matching input passwords.
     if (!empty($_POST['pass1'])) {
         if ($_POST['pass1'] != $_POST['pass2']) {

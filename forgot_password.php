@@ -36,11 +36,6 @@
           </div>
           <div class="card-body">
             <form action="send_email.php" method="post">
-
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" size="30" required>
-              </div>
               <div style="text-align:center">
               <p> A link to reset your password has been sent to your email address. If you cannot see it, please check the SPAM folder. 
               </p>
@@ -53,10 +48,6 @@
       <div class="col-sm">
       </div>
     </div>
-  </div>
-  </div>
-  </div>
-  </div>
   </div>
   ';
     }
@@ -94,10 +85,6 @@
           <div class="col-sm">
           </div>
         </div>
-      </div>
-      </div>
-      </div>
-      </div>
       </div>
       ';
     }

@@ -1,10 +1,6 @@
 Forgot password
     - check if email exists in the database
-    - password reset form
-    - pass $to in the reset link sent to email to ensure user can only reset their password
-User panel
-    - only change password for the email currently logged in
-
+    
 Admin panel
 
 Payment form
