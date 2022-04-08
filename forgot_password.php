@@ -75,7 +75,7 @@
                   </div>
                   <br>
                   <div style="text-align:center">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#card">Send password reset link</button>
+                    <button type="submit" class="btn btn-primary">Send password reset link</button>
                   </div>
     
                 </form>

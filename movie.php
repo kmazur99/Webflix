@@ -128,7 +128,7 @@ if (mysqli_num_rows($r) == 1) {
     </table>
         <h3>Watch now with webflix premium</h3>
         <hr>
-        <a href=""> <button type="button" class="btn btn-secondary" role="button"><h3>Purchase premium</h3></button></a>
+        <a href="payment.php"> <button type="button" class="btn btn-secondary" role="button"><h3>Purchase premium</h3></button></a>
         </div> 
         ';
   }

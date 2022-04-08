@@ -16,13 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     # Initialize an error array.
     $errors = array();
 
-    # Check for an email address:
-    if (empty($_POST['email'])) {
-        $errors[] = 'Enter your email address.';
-    } else {
-        $e = mysqli_real_escape_string($link, trim($_POST['email']));
-    }
-
     # Check for card number:
     if (empty($_POST['card_number'])) {
         $errors[] = 'Enter your card number.';
@@ -51,15 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'Enter CVV.';
     }
 
-    # Check if email address already registered.
-    if (empty($errors)) {
-        $q = "SELECT * FROM users WHERE email='$e'";
-        $r = @mysqli_query($link, $q);
-    }
 
     # On success new card details into 'users' database table.
     if (empty($errors)) {
-        $q = "UPDATE users SET card_number='$cn', exp_month='$m', exp_year='$y', cvv='$cv' WHERE email='$e'";
+        $q = "UPDATE users SET card_number='$cn', exp_month='$m', exp_year='$y', cvv='$cv' WHERE user_id={$_SESSION['user_id']}";
         $r = @mysqli_query($link, $q);
         if ($r) {
             $SuccessCard = urlencode("Card details have been updated successfully.");

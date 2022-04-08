@@ -76,11 +76,27 @@ if (mysqli_num_rows($r) > 0) {
 <label for="userName" class="col-sm-12 col-form-label"><strong>Name: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
   </div>
     </li>
+    ';
+    if($row['subscription'] == 'Premium'){
+        echo '
     <li class="list-group-item">
     <div class="form-group row">
 <label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '</label> 			  
      </div>
    </li>
+   ';
+    }
+    elseif($row['subscription'] == 'Basic'){
+        echo '
+   <li class="list-group-item">
+    <div class="form-group row">
+<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
+<a href="payment.php"> <button type="button" class="btn btn-secondary" role="button" style="float: right;">Purchase premium</button></a>		
+</label>	  
+     </div>
+   </li>
+   ';}
+   echo '
     <li class="list-group-item">
      <div class="form-group row">
 <label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
@@ -142,7 +158,7 @@ if (mysqli_num_rows($r) > 0) {
         </li>
                <li class="list-group-item">
          <div class="form-group row">
-    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'; echo wordwrap($row['card_number'], 4, "-", true); echo '</label> 			  
+    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'; echo wordwrap($row['card_number'], 4, " ", true); echo '</label> 			  
           </div>
         </li>
         <li class="list-group-item">
@@ -227,7 +243,7 @@ include('includes/bootstrap.html');
             <div class="modal-body">
                 <form action="update-card.php" method="post">
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Confirm Email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
+                        <input type="hidden" name="email" class="form-control" placeholder="Confirm Email" value="<?php echo $_POST[$row['email']]; ?>" required>
                     </div>
                     <div class="form-group">
                         <input type="number" name="card_number" class="form-control" placeholder="Card Number" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
