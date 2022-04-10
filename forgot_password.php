@@ -20,8 +20,17 @@
         </nav>
   ';
 
-    if (isset($_GET['Success'])) {
-  echo'
+  if (isset($_GET['Message'])) {
+    echo '<div class="alert alert-dark" role="alert">
+    <h4 class="alert-heading">Error</h4>
+    <p> ' . $_GET['Message'] . ' </p>
+  <hr>
+  <footer">
+  </footer></div>  ';
+  }
+
+  if (isset($_GET['Success'])) {
+    echo '
   <br>
   <title>Forgot password - Webflix</title>
   <div class="container">
@@ -50,9 +59,8 @@
     </div>
   </div>
   ';
-    }
-    else{
-      echo'
+  } else {
+    echo '
       <br>
       <title>Forgot password - Webflix</title>
       <div class="container">
@@ -71,7 +79,8 @@
     
                   <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" id="email" name="email" size="30" required>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" size="40" required>
+
                   </div>
                   <br>
                   <div style="text-align:center">
@@ -87,5 +96,5 @@
         </div>
       </div>
       ';
-    }
-  
+  }
+    # Display Error message to the user

@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q = "UPDATE users SET pass= SHA2('$p',256) WHERE user_id={$_SESSION['user_id']}";
         $r = @mysqli_query($link, $q);
         if ($r) {
-            $Success = urlencode("Password has been changed successfully.");
-            header("Location:user.php?Success=".$Success);
+            $Message = urlencode("Password has been changed successfully.");
+            header("Location:user.php?Success=".$Message);
             die;
         } else {
             echo "Error updating record: " . $link->error;

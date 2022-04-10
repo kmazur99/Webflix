@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q = "UPDATE users SET card_number='$cn', exp_month='$m', exp_year='$y', cvv='$cv' WHERE user_id={$_SESSION['user_id']}";
         $r = @mysqli_query($link, $q);
         if ($r) {
-            $SuccessCard = urlencode("Card details have been updated successfully.");
-            header("Location:user.php?SuccessCard=".$SuccessCard);
+            $Message = urlencode("Card details have been updated successfully.");
+            header("Location:user.php?Success=".$Message);
             die;
         } else {
             echo "Error updating record: " . $link->error;
@@ -65,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     # Or report errors.
     else {
-        $errMessage = urlencode("Error updating card details");
-        header("Location:user.php?errMessage=".$errMessage);
+        $Message = urlencode("Error updating card details");
+        header("Location:user.php?Message=".$Message);
         die;
     }
 }

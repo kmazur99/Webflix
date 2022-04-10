@@ -58,12 +58,12 @@ if (mysqli_num_rows($r) > 0) {
                 </div>
               <div class="form-group col-md-6">
                 <label for="cvv">Security code</label>
-                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Confirm CVV" required>
+                <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="cvv" name="cvv" placeholder="Confirm CVV" required>
                 <p style="color: #C72606;">Your data doesn\'t match our records</p>
               </div>
             </div>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-primary">Pay Now</button>
+                <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
               </div>
 
             </form>
@@ -109,7 +109,7 @@ if (mysqli_num_rows($r) > 0) {
             </div>
 
             <br>
-            <a href="home.php"> <button type="button" class="btn btn-secondary" role="button">Home</button></a>
+            <a href="home.php"> <button type="button" class="btn btn-secondary btn-block" role="button">Home</button></a>
             </div>
           </div>
         </div>
@@ -159,12 +159,13 @@ if (mysqli_num_rows($r) > 0) {
                 </div>
               <div class="form-group col-md-6">
                 <label for="cvv">Security code</label>
-                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Confirm CVV" required>
+                <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="cvv" name="cvv" placeholder="Confirm CVV" required>
+
               </div>
             </div>
               <br>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-primary">Pay Now</button>
+                <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
               </div>
 
             </form>
@@ -195,79 +196,3 @@ if (mysqli_num_rows($r) > 0) {
 include('includes/bootstrap.html');
 
 ?>
-
-<div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="password" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Change Password</h5>
-            </div>
-
-            <div class="modal-body">
-                <form action="change-password.php" method="post">
-                    <div class="form-group">
-                        <input type="hidden" name="email" class="form-control" placeholder="Confirm Email" value="<?php echo $_POST[$row['email']]; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="pass1" class="form-control" placeholder="New Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" name="pass2" class="form-control" placeholder="Confirm New Password" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Save Changes">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            </form>
-        </div>
-        <!--Close body-->
-    </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
-
-<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-labelledby="card" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Update Card</h5>
-            </div>
-
-            <div class="modal-body">
-                <form action="update-card.php" method="post">
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Confirm Email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="card_number" class="form-control" placeholder="Card Number" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="exp_month" class="form-control" placeholder="Expiry Month" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="exp_year" class="form-control" placeholder="Expiry Year" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="cvv" class="form-control" placeholder="CVV" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Save Changes">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            </form>
-        </div>
-        <!--Close body-->
-    </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->

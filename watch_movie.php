@@ -7,6 +7,7 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
 # Open database connection.
 require('connect_db.php');
+require('checkPremium.php');
 
 # Get passed product id and assign it to a variable.
 if (isset($_GET['id'])) $id = $_GET['id'];

@@ -19,6 +19,9 @@ $message = "
 </html>
 ";
 
+$q = "SELECT * FROM users WHERE email='$to'";
+$r = mysqli_query($link, $q);
+if (mysqli_num_rows($r) > 0) {
   $subject = "Reset password";
   $headers = "From: Webflix <password-reset@webflix.com>\r\n";
   $headers .= "Reply-To: password-reset@webflix.com\r\n";
@@ -28,3 +31,11 @@ $message = "
   $Success = urlencode("Email sent");
   header("Location:forgot_password.php?Success=".$Success);
   die;
+}
+else{
+  $Message = urlencode("Email is not registered");
+  header("Location:forgot_password.php?Message=".$Message);
+  die;
+}
+
+  

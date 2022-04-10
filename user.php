@@ -9,46 +9,25 @@ if (!isset($_SESSION['user_id'])) {
     load();
 }
 
-# Display error message if passwords don't match
-if(isset($_GET['Message'])){
+# Display Error message to the user
+if (isset($_GET['Message'])) {
     echo '<div class="alert alert-dark" role="alert">
     <h4 class="alert-heading">Error</h4>
-    <p> '. $_GET['Message'] .' </p>
+    <p> ' . $_GET['Message'] . ' </p>
   <hr>
 <footer">
 </footer></div>  ';
 }
 
-# Display error message if card cannot be updated
-if(isset($_GET['errMessage'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Error</h4>
-    <p> '. $_GET['errMessage'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
-# Display message when password has been changed
-if(isset($_GET['Success'])){
+# Display Success message to the user
+if (isset($_GET['Success'])) {
     echo '<div class="alert alert-dark" role="alert">
     <h4 class="alert-heading">Success</h4>
-    <p> '. $_GET['Success'] .' </p>
+    <p> ' . $_GET['Success'] . ' </p>
   <hr>
 <footer">
 </footer></div>  ';
 }
-
-# Display message when card details have been updated
-if(isset($_GET['SuccessCard'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Success</h4>
-    <p> '. $_GET['SuccessCard'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
 
 # Open database connection.
 require('connect_db.php');
@@ -77,17 +56,18 @@ if (mysqli_num_rows($r) > 0) {
   </div>
     </li>
     ';
-    if($row['subscription'] == 'Premium'){
-        echo '
+        if ($row['subscription'] == 'Premium') {
+            echo '
     <li class="list-group-item">
     <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '</label> 			  
+<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#cancel" style="float: right;">Cancel subscription</button>	 
+</label>			  
      </div>
    </li>
    ';
-    }
-    elseif($row['subscription'] == 'Basic'){
-        echo '
+        } elseif ($row['subscription'] == 'Basic') {
+            echo '
    <li class="list-group-item">
     <div class="form-group row">
 <label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
@@ -95,8 +75,9 @@ if (mysqli_num_rows($r) > 0) {
 </label>	  
      </div>
    </li>
-   ';}
-   echo '
+   ';
+        }
+        echo '
     <li class="list-group-item">
      <div class="form-group row">
 <label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
@@ -158,7 +139,9 @@ if (mysqli_num_rows($r) > 0) {
         </li>
                <li class="list-group-item">
          <div class="form-group row">
-    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'; echo wordwrap($row['card_number'], 4, " ", true); echo '</label> 			  
+    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>';
+        echo wordwrap($row['card_number'], 4, " ", true);
+        echo '</label> 			  
           </div>
         </li>
         <li class="list-group-item">
@@ -177,10 +160,9 @@ if (mysqli_num_rows($r) > 0) {
       </div>
       </div>
       ';
-    
     }
 
-    
+
 
     # Close database connection.
     mysqli_close($link);
@@ -222,7 +204,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Save Changes">
+                    <input class="btn btn-dark" type="submit" value="Save Changes">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -246,26 +228,56 @@ include('includes/bootstrap.html');
                         <input type="hidden" name="email" class="form-control" placeholder="Confirm Email" value="<?php echo $_POST[$row['email']]; ?>" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" name="card_number" class="form-control" placeholder="Card Number" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
+                        <label for="exampleCardNumber">Card number</label>
+                        <input type="text" pattern="[0-9]{16}" title="Please enter a vaild 16 digit card number" class="form-control" id="exampleCardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" name="card_number" size="16" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
                     </div>
-
-                    <div class="form-group">
-                        <input type="number" name="exp_month" class="form-control" placeholder="Expiry Month" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="exp_year" class="form-control" placeholder="Expiry Year" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="cvv" class="form-control" placeholder="CVV" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="exampleExpiryMonth">Expiry Month</label>
+                            <input type="text" pattern="[0-9]{2}" title="Please enter a vaild 2 digit expiry month" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exampleExpiryYear">Expiry Year</label>
+                            <input type="text" pattern="[0-9]{4}" title="Please enter a vaild 4 digit expiry year" class="form-control" id="exampleExpiryYear" placeholder="YYYY" name="exp_year" size="4" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="exampleCvv">CVV</label>
+                            <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
+                        </div>
                     </div>
 
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Save Changes">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input class="btn btn-dark" type="submit" value="Save Changes">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <!--Close body-->
+    </div>
+    <!--Close modal-body-->
+</div><!-- Close modal-fade-->
+
+<div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Your Subscription?</h5>
+            </div>
+
+            <div class="modal-body">
+                <form action="process_cancellation.php" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="email" class="form-control" placeholder="Confirm Email" value="<?php echo $_POST[$row['email']]; ?>" required>
+                    </div>
+                    <p>Click "Complete Cancellation" below to cancel your subscription</p>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input class="btn btn-dark" type="submit" value="Complete Cancellation">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
                 </div>
             </div>
             </form>

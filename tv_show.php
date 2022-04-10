@@ -90,7 +90,7 @@ if (mysqli_num_rows($r) == 1) {
           </tbody>
         </table>
         <hr>
-        <a href="watch_show.php?id=' . $row['id'] . '&season=' .$season. '&episode=' .$episode.'"> <button type="button" class="btn btn-secondary" role="button"><h2>Watch now</h2></button></a>
+        <a href="watch_show.php?id=' . $row['id'] . '&season=' .$season. '&episode=' .$episode.'"> <button type="button" class="btn btn-secondary btn-block" role="button"><h2>Watch now</h2></button></a>
         </div> 
         ';
   } else {
@@ -142,7 +142,7 @@ if (mysqli_num_rows($r) == 1) {
       </tbody>
     </table>
     <hr>
-        <a href="payment.php"> <button type="button" class="btn btn-secondary" role="button"><h3>Purchase premium</h3></button></a>
+        <a href="payment.php"> <button type="button" class="btn btn-secondary btn-block" role="button"><h3>Purchase premium</h3></button></a>
         </div> 
         ';
   }

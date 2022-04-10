@@ -159,11 +159,11 @@ include('includes/bootstrap.html');
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="exampleInputName">First Name</label>
-                <input type="text" pattern="[a-zA-Z]+" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
+                <input type="text" pattern="[a-zA-Z]+" title="This field should not contain non-alphabetic characters" class="form-control" id="exampleInputName" name="first_name" size="20" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="exampleLastName">Last Name</label>
-                <input type="text" pattern="[a-zA-Z]+" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
+                <input type="text" pattern="[a-zA-Z]+" title="This field should not contain non-alphabetic characters" class="form-control" id="exampleLastName" name="last_name" size="20" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" required>
               </div>
             </div>
             <div class="form-group">
@@ -186,7 +186,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="form-group">
               <label for="exampleCountry">Country</label>
-              <input type="text" pattern="[a-zA-Z\s]+" class="form-control" id="exampleCountry" name="country" size="30" value="<?php if (isset($_POST['country'])) echo $_POST['country']; ?>" required>
+              <input type="text" pattern="[a-zA-Z\s]+" title="This field should not contain numbers" class="form-control" id="exampleCountry" name="country" size="30" value="<?php if (isset($_POST['country'])) echo $_POST['country']; ?>" required>
             </div>
             <div class="form-group">
               <label for="exampleDOB">DOB</label>
@@ -194,20 +194,20 @@ include('includes/bootstrap.html');
             </div>
             <div class="form-group">
               <label for="exampleCardNumber">Card number</label>
-              <input type="text" pattern="[0-9]{16}" class="form-control" id="exampleCardNumber" name="card_number" size="16" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
+              <input type="text" pattern="[0-9]{16}" title="Please enter a vaild 16 digit card number" class="form-control" id="exampleCardNumber" name="card_number" size="16" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="exampleExpiryMonth">Expiry Month</label>
-                <input type="text" pattern="[0-9]{2}" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
+                <input type="text" pattern="[0-9]{2}" title="Please enter a vaild 2 digit expiry month" class="form-control" id="exampleExpiryMonth" placeholder="MM" name="exp_month" size="2" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="exampleExpiryYear">Expiry Year</label>
-                <input type="text" pattern="[0-9]{4}" class="form-control" id="exampleExpiryYear" placeholder="YYYY" name="exp_year" size="4" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
+                <input type="text" pattern="[0-9]{4}" title="Please enter a vaild 4 digit expiry year" class="form-control" id="exampleExpiryYear" placeholder="YYYY" name="exp_year" size="4" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
               </div>
               <div class="form-group col-md-4">
                 <label for="exampleCvv">CVV</label>
-                <input type="text" pattern="[0-9]{3}" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
+                <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
               </div>
             </div>
             <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
