@@ -47,16 +47,16 @@ if($input["action"] === 'delete')
 
 if(isset($_POST['new_show_title'])){
 
-    $new_title = $_POST[ 'new_show_title' ];
-    $new_description = $_POST[ 'show_description' ];
-    $new_img = $_POST[ 'show_img' ];
-    $new_category = $_POST[ 'show_category' ];
-    $new_released = $_POST[ 'show_released' ];
-    $new_languages = $_POST[ 'show_languages' ];
-    $new_seasons = $_POST[ 'new_seasons' ];
-    $new_episodes = $_POST[ 'new_episodes' ];
-    $new_show_url = $_POST[ 'show_url' ];
-    $new_trailer_url = $_POST[ 'show_trailer' ];
+    $new_title = mysqli_real_escape_string($link,$_POST[ 'new_show_title' ]);
+    $new_description = mysqli_real_escape_string($link,$_POST[ 'show_description' ]);
+    $new_img = mysqli_real_escape_string($link,$_POST[ 'show_img' ]);
+    $new_category = mysqli_real_escape_string($link,$_POST[ 'show_category' ]);
+    $new_released = mysqli_real_escape_string($link,$_POST[ 'show_released' ]);
+    $new_languages = mysqli_real_escape_string($link,$_POST[ 'show_languages' ]);
+    $new_seasons = mysqli_real_escape_string($link,$_POST[ 'new_seasons' ]);
+    $new_episodes = mysqli_real_escape_string($link,$_POST[ 'new_episodes' ]);
+    $new_show_url = mysqli_real_escape_string($link,$_POST[ 'show_url' ]);
+    $new_trailer_url = mysqli_real_escape_string($link,$_POST[ 'show_trailer' ]);
     
     $query = "INSERT INTO tv_show (show_title, further_info, release_date, img, preview, category, languages, seasons, episodes, link) VALUES ('$new_title', '$new_description', '$new_released', '$new_img', '$new_trailer_url', '$new_category', '$new_languages', '$new_seasons', '$new_episodes', '$new_show_url')";
     mysqli_query($link, $query);

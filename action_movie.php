@@ -45,15 +45,15 @@ if($input["action"] === 'delete')
 
 if(isset($_POST['new_movie_title'])){
 
-    $new_title = $_POST[ 'new_movie_title' ];
-    $new_description = $_POST[ 'description' ];
-    $new_img = $_POST[ 'img' ];
-    $new_category = $_POST[ 'category' ];
-    $new_released = $_POST[ 'released' ];
-    $new_languages = $_POST[ 'languages' ];
-    $new_duration = $_POST[ 'duration' ];
-    $new_movie_url = $_POST[ 'movie_url' ];
-    $new_trailer_url = $_POST[ 'trailer_url' ];
+    $new_title = mysqli_real_escape_string($link,$_POST[ 'new_movie_title' ]);
+    $new_description = mysqli_real_escape_string($link, $_POST[ 'description' ]);
+    $new_img = mysqli_real_escape_string($link,$_POST[ 'img' ]);
+    $new_category = mysqli_real_escape_string($link,$_POST[ 'category' ]);
+    $new_released = mysqli_real_escape_string($link,$_POST[ 'released' ]);
+    $new_languages = mysqli_real_escape_string($link,$_POST[ 'languages' ]);
+    $new_duration = mysqli_real_escape_string($link,$_POST[ 'duration' ]);
+    $new_movie_url = mysqli_real_escape_string($link,$_POST[ 'movie_url' ]);
+    $new_trailer_url = mysqli_real_escape_string($link,$_POST[ 'trailer_url' ]);
     
     $query = "INSERT INTO movie (movie_title, further_info, img, preview, link, category, release_date, languages, duration) VALUES ('$new_title', '$new_description', '$new_img', '$new_trailer_url', '$new_movie_url', '$new_category', '$new_released', '$new_languages', '$new_duration')";
     mysqli_query($link, $query);
