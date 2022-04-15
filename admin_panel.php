@@ -80,7 +80,7 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
-                    <button id="addRow">Add Row</button>
+                    <button class="btn btn-secondary" id="addRow">Add Row</button>
                 </div>
 
             </div>

@@ -204,7 +204,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Save Changes">
+                    <input class="btn btn-secondary" type="submit" value="Save Changes">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -249,7 +249,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Save Changes">
+                    <input class="btn btn-secondary" type="submit" value="Save Changes">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -276,7 +276,7 @@ include('includes/bootstrap.html');
             </div>
             <div class="modal-footer">
                 <div class="form-group">
-                    <input class="btn btn-dark" type="submit" value="Complete Cancellation">
+                    <input class="btn btn-secondary" type="submit" value="Complete Cancellation">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
                 </div>
             </div>
