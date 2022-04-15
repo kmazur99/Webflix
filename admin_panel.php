@@ -80,7 +80,9 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
+                    <button id="addRow">Add Row</button>
                 </div>
+
             </div>
         </div>
 
@@ -220,6 +222,20 @@ $categories_result = mysqli_query($link, $categories_query);
 
 </html>
 <script>
+
+$("#addRow").click(function() { 
+	var tableditTableName = '#user_table';  // Identifier of table
+	var newID = parseInt($(tableditTableName + " tr:last").attr("id")) + 1; 
+	var clone = $("#user_table tr:last").clone(); 
+	$(".tabledit-span", clone).text(""); 
+	$(".tabledit-input", clone).val(""); 
+	clone.prependTo("table"); 
+	$(tableditTableName + " tbody tr:first").attr("id", newID); 
+	$(tableditTableName + " tbody tr:first td .tabledit-span.tabledit-identifier").text(newID); 
+	$(tableditTableName + " tbody tr:first td .tabledit-input.tabledit-identifier").val(newID); 
+	$(tableditTableName + " tbody tr:first td:last .tabledit-edit-button").trigger("click"); 
+});
+
     $(document).ready(function() {
         $('#user_table').Tabledit({
             url: 'action_user.php',
@@ -316,4 +332,6 @@ $categories_result = mysqli_query($link, $categories_query);
         });
 
     });
+
+    
 </script>
