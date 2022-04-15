@@ -2,10 +2,19 @@
   include('includes/bootstrap.html');
 
   echo '
-  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #171717 !important;">
+  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
           <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
         </nav>
   ';
+
+  if (isset($_GET['Success'])) {
+    echo '<div class="alert alert-dark" role="alert">
+    <h4 class="alert-heading">Logout</h4>
+    <p> ' . $_GET['Success'] . ' </p>
+  <hr>
+  <footer">
+  </footer></div>  ';
+  }
 
   # Display any error messages if present.
   if (isset($errors) && !empty($errors)) {
@@ -55,7 +64,7 @@
               </div>
               <br>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-primary">Sign In</button>
+                <button type="submit" class="btn btn-secondary">Sign In</button>
               </div>
 
             </form>

@@ -15,4 +15,6 @@ $_SESSION = array();
 # Destroy the session.
 session_destroy();
 
-header("Location: login.php");
+$Success = urlencode("You have been successfully logged out.");
+  header("Location:login.php?Success=".$Success);
+  die;

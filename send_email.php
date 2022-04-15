@@ -33,7 +33,7 @@ if (mysqli_num_rows($r) > 0) {
   die;
 }
 else{
-  $Message = urlencode("Email is not registered");
+  $Message = urlencode("No account found with that email address.");
   header("Location:forgot_password.php?Message=".$Message);
   die;
 }

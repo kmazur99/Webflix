@@ -1,7 +1,7 @@
 <?php
 
 echo '
-  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #171717 !important;">
+  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
           <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
         </nav>
   ';
@@ -213,7 +213,7 @@ include('includes/bootstrap.html');
             <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
             <div style="text-align:center">
             <br>
-              <button type="submit" class="btn btn-primary" name="register">Create Account</button>
+              <button type="submit" class="btn btn-secondary" name="register">Create Account</button>
             </div>
           </form>
         </div>

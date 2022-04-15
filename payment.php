@@ -63,7 +63,7 @@ if (mysqli_num_rows($r) > 0) {
               </div>
             </div>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+                <button type="submit" class="btn btn-secondary btn-block">Pay Now</button>
               </div>
 
             </form>
@@ -165,7 +165,7 @@ if (mysqli_num_rows($r) > 0) {
             </div>
               <br>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+                <button type="submit" class="btn btn-secondary btn-block">Pay Now</button>
               </div>
 
             </form>

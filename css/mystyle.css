@@ -116,15 +116,16 @@ hr {
 
 /* Styling elements */
 
-button {
-    font-family: 'Roboto Condensed', sans-serif;
-    color: #fff;
-    background-color: #C72606 !important;
-    border: none !important;
-}
-
 .card {
     background-color: transparent !important;
+}
+
+.card-header {
+    background-color: #111111 !important;
+}
+
+.card-body {
+    background-color: #111111 !important;
 }
 
 .card-img-top {
@@ -140,8 +141,11 @@ button {
     background-color: #2B2B2B !important;
 }
 
-.btn {
+.btn-secondary {
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
     background-color: #C72606 !important;
+    border: none !important;
 }
 
 .modal-content {
@@ -174,4 +178,13 @@ input[type=text]:disabled {
     padding-right: 1.25rem;
     padding-bottom: 0.2rem;
     padding-top: 0.2rem;
+}
+
+td {
+    word-wrap: break-word;
+    color: #fff;
+}
+
+th {
+    color: #fff;
 }

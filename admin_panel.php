@@ -9,236 +9,311 @@ if (!isset($_SESSION['user_id'])) {
     load();
 }
 
-# Display error message if passwords don't match
-if(isset($_GET['Message'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Error</h4>
-    <p> '. $_GET['Message'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
-# Display error message if card cannot be updated
-if(isset($_GET['errMessage'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Error</h4>
-    <p> '. $_GET['errMessage'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
-# Display message when password has been changed
-if(isset($_GET['Success'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Success</h4>
-    <p> '. $_GET['Success'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
-# Display message when card details have been updated
-if(isset($_GET['SuccessCard'])){
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Success</h4>
-    <p> '. $_GET['SuccessCard'] .' </p>
-  <hr>
-<footer">
-</footer></div>  ';
-}
-
-
 # Open database connection.
 require('connect_db.php');
 
-# Retrieve items from 'users' database table.
-$q = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
-$r = mysqli_query($link, $q);
-if (mysqli_num_rows($r) > 0) {
-    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-        echo '
-        <title>Admin Panel - Webflix</title>
-        <br>
-    <div class="container">
-  <div class="row">
-      <div class="col-sm">
-	<div class="card card-dark mb-3">
-	    <div class="card-header"> 
-	          <h5 class="card-title">Account Details</h5>
-	    </div>
-	    <div class="card-body">
-	    <form>
-         <ul class="list-group list-group"> 
-    <li class="list-group-item">
-      <div class="form-group row">
-<label for="userName" class="col-sm-12 col-form-label"><strong>Name: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
-  </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
-      </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '</label> 			  
-      </div>
-    </li>
-
-    <li class="list-group-item">
-<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#password">Change Password</button>
-</li>
-</ul>
-</form> 
-</div>
-</div>
-</div>
-</div>
-</div>
-
-';
-    }
-} else {
-    echo '<h3>No user details.</h3>';
-}
-
-# Retrieve items from 'users' database table.
-$q = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
-$r = mysqli_query($link, $q);
-if (mysqli_num_rows($r) > 0) {
-    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-        echo '
-        <div class="container">
-        <div class="row">
-            <div class="col-sm">
-            <div class="card card-dark mb-3">
-            <div class="card-header"> 
-                  <h5 class="card-title">Payment Details</h5>
-            </div>
-            <div class="card-body">
-            <form>
-             <ul class="list-group list-group"> 
-        <li class="list-group-item">
-          <div class="form-group row">
-    <label for="cardHolder" class="col-sm-12 col-form-label"><strong>Card Holder: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
-      </div>
-        </li>
-               <li class="list-group-item">
-         <div class="form-group row">
-    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>'  . $row['card_number'] . '</label> 			  
-          </div>
-        </li>
-        <li class="list-group-item">
-         <div class="form-group row">
-    <label for="expDate" class="col-sm-12 col-form-label"><strong>Expiry Date: </strong>'  . $row['exp_month'] . ' / '  . $row['exp_year'] . '</label> 			  
-          </div>
-        </li>
-      
-        <li class="list-group-item">
-        <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#card">Update Card</button>
-        </li>
-      </ul>
-      </form> 
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      ';
-    }
-
-    # Close database connection.
-    mysqli_close($link);
-} else {
-    echo '<div class="alert alert-danger" alert-dismissible fade show" role="alert">
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		   </button>
-			<h1>Card Stored</h1>
-			<h3>No card stored.</h3>
-		</div>
-';
-}
-
 include('includes/bootstrap.html');
 
+// Access the data from the database.
+$user_query = "SELECT * FROM users ORDER BY user_id ASC";
+$user_result = mysqli_query($link, $user_query);
+
+$movie_query = "SELECT * FROM movie ORDER BY id ASC";
+$movie_result = mysqli_query($link, $movie_query);
+
+$show_query = "SELECT * FROM tv_show ORDER BY id ASC";
+$show_result = mysqli_query($link, $show_query);
+
+$categories_query = "SELECT * FROM categories ORDER BY category_id ASC";
+$categories_result = mysqli_query($link, $categories_query);
 ?>
+<html>
 
-<div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="password" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Change Password</h5>
+<head>
+    <title>Admin Panel - Webflix</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="jquery.tabledit.min.js"></script>
+
+</head>
+
+<body>
+    <br />
+
+    <div class="container">
+        <div class="card card-dark mb-3">
+            <div class="card-header">
+                <h5 class="card-title">Users</h5>
             </div>
-
-            <div class="modal-body">
-                <form action="change-password.php" method="post">
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Confirm Email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" name="pass1" class="form-control" placeholder="New Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" name="pass2" class="form-control" placeholder="Confirm New Password" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Save Changes">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="card-body">
+                <div class="user-table">
+                    <table id="user_table" class="table table-striped table-hover">
+                        <thead class="thead">
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Birth</th>
+                                <th>Email</th>
+                                <th>Contact Number</th>
+                                <th>Country</th>
+                                <th>Joined</th>
+                                <th>Subscription</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($row = mysqli_fetch_array($user_result)) {
+                                echo '
+      <tr>
+       <td>' . $row["user_id"] . '</td>
+       <td>' . $row["first_name"] . '</td>
+       <td>' . $row["last_name"] . '</td>
+       <td>' . $row["DOB"] . '</td>
+       <td>' . $row["email"] . '</td>
+       <td>' . $row["contact_number"] . '</td>
+       <td>' . $row["country"] . '</td>
+       <td>' . $row["reg_date"] . '</td>
+       <td>' . $row["subscription"] . '</td>
+      </tr>
+      ';
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            </form>
         </div>
-        <!--Close body-->
-    </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
 
-<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-labelledby="card" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Update Card</h5>
+        <div class="card card-dark mb-3">
+            <div class="card-header">
+                <h5 class="card-title">Categories</h5>
             </div>
+            <div class="card-body">
+                <div class="categories-table">
+                    <table id="categories_table" class="table table-striped table-hover" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Category Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($row = mysqli_fetch_array($categories_result)) {
+                                echo '
+      <tr>
+       <td>' . $row["category_id"] . '</td>
+       <td>' . $row["category_name"] . '</td>
+      </tr>
+      ';
+                            }
 
-            <div class="modal-body">
-                <form action="update-card.php" method="post">
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Confirm Email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="card_number" class="form-control" placeholder="Card Number" value="<?php if (isset($_POST['card_number'])) echo $_POST['card_number']; ?>" required>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="number" name="exp_month" class="form-control" placeholder="Expiry Month" value="<?php if (isset($_POST['exp_month'])) echo $_POST['exp_month']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="exp_year" class="form-control" placeholder="Expiry Year" value="<?php if (isset($_POST['exp_year'])) echo $_POST['exp_year']; ?>" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="cvv" class="form-control" placeholder="CVV" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
-                    </div>
-
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Save Changes">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            </form>
         </div>
-        <!--Close body-->
+
+        <div class="card card-dark mb-3">
+            <div class="card-header">
+                <h5 class="card-title">Movies</h5>
+            </div>
+            <div class="card-body">
+                <div class="movie-table">
+                    <table id="movie_table" class="table table-striped table-hover" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Cover Image</th>
+                                <th>Category</th>
+                                <th>Release Date</th>
+                                <th>Languages</th>
+                                <th>Duration</th>
+                                <th>Movie Link</th>
+                                <th>Trailer Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($row = mysqli_fetch_array($movie_result)) {
+                                echo '
+      <tr>
+       <td>' . $row["id"] . '</td>
+       <td>' . $row["movie_title"] . '</td>
+       <td>' . $row["further_info"] . '</td>
+       <td>' . $row["img"] . '</td>
+       <td>' . $row["category"] . '</td>
+       <td>' . $row["release_date"] . '</td>
+       <td>' . $row["languages"] . '</td>
+       <td>' . $row["duration"] . '</td>
+       <td>' . $row["link"] . '</td>
+       <td>' . $row["preview"] . '</td>
+      </tr>
+      ';
+                            }
+
+
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-dark mb-3">
+            <div class="card-header">
+                <h5 class="card-title">TV Shows</h5>
+            </div>
+            <div class="card-body">
+                <div class="show-table">
+                    <table id="show_table" class="table table-striped table-hover" style="table-layout: fixed;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Cover Image</th>
+                                <th>Category</th>
+                                <th>Release Date</th>
+                                <th>Languages</th>
+                                <th>No. of Seasons</th>
+                                <th>No. of Episodes</th>
+                                <th>Show Link</th>
+                                <th>Trailer Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            while ($row = mysqli_fetch_array($show_result)) {
+                                echo '
+      <tr>
+       <td>' . $row["id"] . '</td>
+       <td>' . $row["show_title"] . '</td>
+       <td>' . $row["further_info"] . '</td>
+       <td>' . $row["img"] . '</td>
+       <td>' . $row["category"] . '</td>
+       <td>' . $row["release_date"] . '</td>
+       <td>' . $row["languages"] . '</td>
+       <td>' . $row["seasons"] . '</td>
+       <td>' . $row["episodes"] . '</td>
+       <td>' . $row["link"] . '</td>
+       <td>' . $row["preview"] . '</td>
+      </tr>
+      ';
+                            }
+
+
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
+
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $('#user_table').Tabledit({
+            url: 'action_user.php',
+            columns: {
+                identifier: [0, "user_id"],
+                editable: [
+                    [1, 'first_name'],
+                    [2, 'last_name'],
+                    [3, 'DOB'],
+                    [4, 'email'],
+                    [5, 'contact_number'],
+                    [6, 'country'],
+                    [7, 'reg_date'],
+                    [8, 'subscription']
+                ]
+            },
+            restoreButton: true,
+            onSuccess: function(data, textStatus, jqXHR) {
+                if (data.action == 'delete') {
+                    $('#' + data.id).remove();
+                }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#movie_table').Tabledit({
+            url: 'action_movie.php',
+            columns: {
+                identifier: [0, "id"],
+                editable: [
+                    [1, 'movie_title'],
+                    [2, 'further_info'],
+                    [3, 'img'],
+                    [4, 'category'],
+                    [5, 'release_date'],
+                    [6, 'languages'],
+                    [7, 'duration'],
+                    [8, 'link'],
+                    [9, 'preview']
+                ]
+            },
+            restoreButton: true,
+            onSuccess: function(data, textStatus, jqXHR) {
+                if (data.action == 'delete') {
+                    $('#' + data.id).remove();
+                }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#show_table').Tabledit({
+            url: 'action_show.php',
+            columns: {
+                identifier: [0, "id"],
+                editable: [
+                    [1, 'show_title'],
+                    [2, 'further_info'],
+                    [3, 'img'],
+                    [4, 'category'],
+                    [5, 'release_date'],
+                    [6, 'languages'],
+                    [7, 'seasons'],
+                    [8, 'episodes'],
+                    [9, 'link'],
+                    [10, 'preview']
+                ]
+            },
+            restoreButton: true,
+            onSuccess: function(data, textStatus, jqXHR) {
+                if (data.action == 'delete') {
+                    $('#' + data.id).remove();
+                }
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#categories_table').Tabledit({
+            url: 'action_categories.php',
+            columns: {
+                identifier: [0, "category_id"],
+                editable: [
+                    [1, 'category_name']
+                ]
+            },
+            restoreButton: true,
+            onSuccess: function(data, textStatus, jqXHR) {
+                if (data.action == 'delete') {
+                    $('#' + data.id).remove();
+                }
+            }
+        });
+
+    });
+</script>

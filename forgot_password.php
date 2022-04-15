@@ -84,7 +84,7 @@
                   </div>
                   <br>
                   <div style="text-align:center">
-                    <button type="submit" class="btn btn-primary">Send password reset link</button>
+                    <button type="submit" class="btn btn-secondary">Send password reset link</button>
                   </div>
     
                 </form>
@@ -97,4 +97,3 @@
       </div>
       ';
   }
-    # Display Error message to the user
