@@ -363,7 +363,7 @@ $categories_result = mysqli_query($link, $categories_query);
                 <form action="action_movie.php" method="post">
                     <div class="form-group">
                         <label>Movie title</label>
-                        <input type="text" name="movie_title" class="form-control" value="<?php if (isset($_POST['movie_title'])) echo $_POST['movie_title']; ?>" required>
+                        <input type="text" name="new_movie_title" class="form-control" value="<?php if (isset($_POST['new_movie_title'])) echo $_POST['new_movie_title']; ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -421,7 +421,7 @@ $categories_result = mysqli_query($link, $categories_query);
                 <form action="action_show.php" method="post">
                     <div class="form-group">
                         <label>Show title</label>
-                        <input type="text" name="show_title" class="form-control" value="<?php if (isset($_POST['show_title'])) echo $_POST['show_title']; ?>" required>
+                        <input type="text" name="new_show_title" class="form-control" value="<?php if (isset($_POST['new_show_title'])) echo $_POST['new_show_title']; ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -445,11 +445,11 @@ $categories_result = mysqli_query($link, $categories_query);
                     </div>
                     <div class="form-group">
                         <label>No. of Seasons</label>
-                        <input type="number" name="seasons" class="form-control" value="<?php if (isset($_POST['seasons'])) echo $_POST['seasons']; ?>" required>
+                        <input type="number" name="new_seasons" class="form-control" value="<?php if (isset($_POST['new_seasons'])) echo $_POST['new_seasons']; ?>" required>
                     </div>
                     <div class="form-group">
                         <label>No. of Episodes</label>
-                        <input type="number" name="episodes" class="form-control" value="<?php if (isset($_POST['episodes'])) echo $_POST['episodes']; ?>" required>
+                        <input type="number" name="new_episodes" class="form-control" value="<?php if (isset($_POST['new_episodes'])) echo $_POST['new_episodes']; ?>" required>
                     </div>
                     <div class="form-group">
                         <label>TV Show (URL)</label>

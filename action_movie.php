@@ -43,9 +43,9 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
-if(isset($_POST['movie_title'])){
+if(isset($_POST['new_movie_title'])){
 
-    $new_title = $_POST[ 'movie_title' ];
+    $new_title = $_POST[ 'new_movie_title' ];
     $new_description = $_POST[ 'description' ];
     $new_img = $_POST[ 'img' ];
     $new_category = $_POST[ 'category' ];
