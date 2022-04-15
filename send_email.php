@@ -37,5 +37,4 @@ else{
   header("Location:forgot_password.php?Message=".$Message);
   die;
 }
-
   
