@@ -32,16 +32,6 @@ if($input["action"] === 'edit')
  mysqli_query($link, $query);
 
 }
-if($input["action"] === 'add')
-{
- $query = "
- INSERT INTO users (first_name, last_name, DOB, email, contact_number, country, reg_date, subscription)
-    VALUES ('".$first_name."', '".$last_name."', '".$dob."', '".$email."', '".$contact_number."', '".$country."', '".$reg_date."', '".$subscription."') 
- ";
-
- mysqli_query($link, $query);
-
-}
 if($input["action"] === 'delete')
 {
  $query = "

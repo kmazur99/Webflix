@@ -45,6 +45,27 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+if(isset($_POST['show_title'])){
+
+    $new_title = $_POST[ 'show_title' ];
+    $new_description = $_POST[ 'show_description' ];
+    $new_img = $_POST[ 'show_img' ];
+    $new_category = $_POST[ 'show_category' ];
+    $new_released = $_POST[ 'show_released' ];
+    $new_languages = $_POST[ 'show_languages' ];
+    $new_seasons = $_POST[ 'seasons' ];
+    $new_episodes = $_POST[ 'episodes' ];
+    $new_show_url = $_POST[ 'show_url' ];
+    $new_trailer_url = $_POST[ 'show_trailer' ];
+    
+    $query = "INSERT INTO tv_show (show_title, further_info, release_date, img, preview, category, languages, seasons, episodes, link) VALUES ('$new_title', '$new_description', '$new_released', '$new_img', '$new_trailer_url', '$new_category', '$new_languages', '$new_seasons', '$new_episodes', '$new_show_url')";
+    mysqli_query($link, $query);
+
+    unset($_REQUEST);
+    
+    header('location: admin_panel.php');
+}
+
 echo json_encode($input);
 
 ?>

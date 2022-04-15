@@ -43,6 +43,25 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+if(isset($_POST['movie_title'])){
+
+    $new_title = $_POST[ 'movie_title' ];
+    $new_description = $_POST[ 'description' ];
+    $new_img = $_POST[ 'img' ];
+    $new_category = $_POST[ 'category' ];
+    $new_released = $_POST[ 'released' ];
+    $new_languages = $_POST[ 'languages' ];
+    $new_duration = $_POST[ 'duration' ];
+    $new_movie_url = $_POST[ 'movie_url' ];
+    $new_trailer_url = $_POST[ 'trailer_url' ];
+    
+    $query = "INSERT INTO movie (movie_title, further_info, img, preview, link, category, release_date, languages, duration) VALUES ('$new_title', '$new_description', '$new_img', '$new_trailer_url', '$new_movie_url', '$new_category', '$new_released', '$new_languages', '$new_duration')";
+    mysqli_query($link, $query);
+
+    header('location: admin_panel.php');
+}
+
+
 echo json_encode($input);
 
 ?>

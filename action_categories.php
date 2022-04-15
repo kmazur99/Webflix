@@ -27,6 +27,15 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+if(isset($_POST['new_category'])){
+
+    $new_category = $_POST[ 'new_category' ];
+    $query = "INSERT INTO categories (category_name) VALUES ('$new_category')";
+    mysqli_query($link, $query);
+
+    header('location: admin_panel.php');
+}
+
 echo json_encode($input);
 
 ?>

@@ -31,8 +31,9 @@ $categories_result = mysqli_query($link, $categories_query);
 
 <head>
     <title>Admin Panel - Webflix</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="jquery.tabledit.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://kmazur99.github.io/table_editor.js"></script>
+
 
 </head>
 
@@ -80,7 +81,6 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
-                    <button class="btn btn-secondary" id="addRow">Add Row</button>
                 </div>
 
             </div>
@@ -114,6 +114,7 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#new_category">Add</button>
                 </div>
             </div>
         </div>
@@ -162,6 +163,7 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#new_movie">Add</button>
                 </div>
             </div>
         </div>
@@ -212,6 +214,7 @@ $categories_result = mysqli_query($link, $categories_query);
                             ?>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#new_show">Add</button>
                 </div>
             </div>
         </div>
@@ -222,19 +225,6 @@ $categories_result = mysqli_query($link, $categories_query);
 
 </html>
 <script>
-
-$("#addRow").click(function() { 
-	var tableditTableName = '#user_table';  // Identifier of table
-	var newID = parseInt($(tableditTableName + " tr:last").attr("id")) + 1; 
-	var clone = $("#user_table tr:last").clone(); 
-	$(".tabledit-span", clone).text(""); 
-	$(".tabledit-input", clone).val(""); 
-	clone.prependTo("table"); 
-	$(tableditTableName + " tbody tr:first").attr("id", newID); 
-	$(tableditTableName + " tbody tr:first td .tabledit-span.tabledit-identifier").text(newID); 
-	$(tableditTableName + " tbody tr:first td .tabledit-input.tabledit-identifier").val(newID); 
-	$(tableditTableName + " tbody tr:first td:last .tabledit-edit-button").trigger("click"); 
-});
 
     $(document).ready(function() {
         $('#user_table').Tabledit({
@@ -252,7 +242,7 @@ $("#addRow").click(function() {
                     [8, 'subscription']
                 ]
             },
-            restoreButton: true,
+            restoreButton: false,
             onSuccess: function(data, textStatus, jqXHR) {
                 if (data.action == 'delete') {
                     $('#' + data.id).remove();
@@ -278,7 +268,7 @@ $("#addRow").click(function() {
                     [9, 'preview']
                 ]
             },
-            restoreButton: true,
+            restoreButton: false,
             onSuccess: function(data, textStatus, jqXHR) {
                 if (data.action == 'delete') {
                     $('#' + data.id).remove();
@@ -305,7 +295,7 @@ $("#addRow").click(function() {
                     [10, 'preview']
                 ]
             },
-            restoreButton: true,
+            restoreButton: false,
             onSuccess: function(data, textStatus, jqXHR) {
                 if (data.action == 'delete') {
                     $('#' + data.id).remove();
@@ -323,7 +313,7 @@ $("#addRow").click(function() {
                     [1, 'category_name']
                 ]
             },
-            restoreButton: true,
+            restoreButton: false,
             onSuccess: function(data, textStatus, jqXHR) {
                 if (data.action == 'delete') {
                     $('#' + data.id).remove();
@@ -335,3 +325,148 @@ $("#addRow").click(function() {
 
     
 </script>
+
+<!-- New category popup -->
+<div class="modal fade" id="new_category" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Category</h5>
+            </div>
+
+            <div class="modal-body">
+                <form action="action_categories.php" method="post">
+                    <div class="form-group">
+                        <input type="text" pattern="[a-zA-Z\s]+" title="This field should not contain numbers" name="new_category" class="form-control" placeholder="Enter category name" value="<?php if (isset($_POST['new_category'])) echo $_POST['new_category']; ?>" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input class="btn btn-secondary" type="submit" value="Save Changes">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- New movie popup -->
+<div class="modal fade" id="new_movie" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Movie</h5>
+            </div>
+
+            <div class="modal-body">
+                <form action="action_movie.php" method="post">
+                    <div class="form-group">
+                        <label>Movie title</label>
+                        <input type="text" name="movie_title" class="form-control" value="<?php if (isset($_POST['movie_title'])) echo $_POST['movie_title']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" name="description" class="form-control" value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover image (URL)</label>
+                        <input type="text" name="img" class="form-control" value="<?php if (isset($_POST['img'])) echo $_POST['img']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category (Category ID)</label>
+                        <input type="text" name="category" class="form-control" value="<?php if (isset($_POST['category'])) echo $_POST['category']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" name="released" class="form-control" value="<?php if (isset($_POST['released'])) echo $_POST['released']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Language(s)</label>
+                        <input type="text" name="languages" class="form-control" value="<?php if (isset($_POST['lanugages'])) echo $_POST['languages']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Duration (minutes)</label>
+                        <input type="number" name="duration" class="form-control" value="<?php if (isset($_POST['duration'])) echo $_POST['duration']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Movie (URL)</label>
+                        <input type="text" name="movie_url" class="form-control" value="<?php if (isset($_POST['movie_url'])) echo $_POST['movie_url']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Trailer (URL)</label>
+                        <input type="text" name="trailer_url" class="form-control" value="<?php if (isset($_POST['trailer_url'])) echo $_POST['trailer_url']; ?>" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input class="btn btn-secondary" type="submit" value="Save Changes">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- New tv show popup -->
+<div class="modal fade" id="new_show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Add New TV Show</h5>
+            </div>
+
+            <div class="modal-body">
+                <form action="action_show.php" method="post">
+                    <div class="form-group">
+                        <label>Show title</label>
+                        <input type="text" name="show_title" class="form-control" value="<?php if (isset($_POST['show_title'])) echo $_POST['show_title']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" name="show_description" class="form-control" value="<?php if (isset($_POST['show_description'])) echo $_POST['show_description']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover image (URL)</label>
+                        <input type="text" name="show_img" class="form-control" value="<?php if (isset($_POST['show_img'])) echo $_POST['show_img']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category (Category ID)</label>
+                        <input type="text" name="show_category" class="form-control" value="<?php if (isset($_POST['show_category'])) echo $_POST['show_category']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type="date" name="show_released" class="form-control" value="<?php if (isset($_POST['show_released'])) echo $_POST['show_released']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Language(s)</label>
+                        <input type="text" name="show_languages" class="form-control" value="<?php if (isset($_POST['show_lanugages'])) echo $_POST['show_languages']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No. of Seasons</label>
+                        <input type="number" name="seasons" class="form-control" value="<?php if (isset($_POST['seasons'])) echo $_POST['seasons']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No. of Episodes</label>
+                        <input type="number" name="episodes" class="form-control" value="<?php if (isset($_POST['episodes'])) echo $_POST['episodes']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>TV Show (URL)</label>
+                        <input type="text" name="show_url" class="form-control" value="<?php if (isset($_POST['show_url'])) echo $_POST['show_url']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Trailer (URL)</label>
+                        <input type="text" name="show_trailer" class="form-control" value="<?php if (isset($_POST['show_trailer'])) echo $_POST['show_trailer']; ?>" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input class="btn btn-secondary" type="submit" value="Save Changes">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
