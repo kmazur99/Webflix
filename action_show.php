@@ -61,8 +61,6 @@ if(isset($_POST['new_show_title'])){
     $query = "INSERT INTO tv_show (show_title, further_info, release_date, img, preview, category, languages, seasons, episodes, link) VALUES ('$new_title', '$new_description', '$new_released', '$new_img', '$new_trailer_url', '$new_category', '$new_languages', '$new_seasons', '$new_episodes', '$new_show_url')";
     mysqli_query($link, $query);
 
-    unset($_REQUEST);
-
     header('location: admin_panel.php');
 }
 
