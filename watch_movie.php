@@ -35,7 +35,3 @@ $r = mysqli_query($link, $q);
 mysqli_close($link);
 
 include('includes/bootstrap.html');
-
-
-
-
