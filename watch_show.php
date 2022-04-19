@@ -67,5 +67,3 @@ mysqli_close($link);
 include('includes/bootstrap.html');
 
 
-
-
