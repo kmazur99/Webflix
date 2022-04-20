@@ -58,12 +58,47 @@ if (isset($_GET['episode'])) $episode = $_GET['episode'];
     }
   }
 
+  # Extract show ID
+  $showID = substr($row['link'], strpos($row['link'], "=") + 1);    
+  ?>
+  <script> 
+  var showID = '<?=$showID?>';
+  var episode = '<?=$episode?>';
+  var seasonId = '<?=$season?>';
+    
+    const season = '/season/';
+    const base_url = 'https://api.themoviedb.org/3/tv/'
+    const api_key = '?api_key=1ed6b45ec4f8d4c58a0cde96357735ce';
 
+    const api_url = base_url + showID + season + seasonId + api_key;
+
+
+    function getSeasons(api_url) {
+        fetch(api_url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.episodes.length);
+                simpleCheck(data.episodes.length);
+            })
+    }
+
+
+    function simpleCheck(num) {
+        if (episode <= num) {
+            console.log("More episodes in this season");
+            
+        } else {
+            console.log("No episodes left in this season");
+        }
+    }
+
+    getSeasons(api_url);
+
+     </script>
+  <?php
 
 
 # Close database connection.
 mysqli_close($link);
 
 include('includes/bootstrap.html');
-
-
