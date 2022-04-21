@@ -100,7 +100,7 @@ if (isset($_GET['Success'])) {
               <input type="password" name="pass2" class="form-control" placeholder="Confirm New Password" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
             </div>
             <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Change password">
+                <input class="btn btn-secondary" type="submit" value="Change password">
                 </div>
           </form>
         </div>
