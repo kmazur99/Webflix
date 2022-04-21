@@ -1,4 +1,8 @@
-Improve watching tv series
+Watch TV Show
+-------------
+ - Change buttons to dropdown menus where the user can select an episode na season
 
-Tidy up multiple display options in eg. the payment panel (have the core of design in one variable and only small modifications added depending on the outcome)
+ALL
+---
+- Tidy up redundant code and make it more reusable
 

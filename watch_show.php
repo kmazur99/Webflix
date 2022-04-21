@@ -45,22 +45,22 @@ include('includes/bootstrap.html');
 
 <html>
 
-  <?php
-  $previous_episode = $episode - 1;
-  $previous_season = $season - 1;
+<?php
+$previous_episode = $episode - 1;
+$previous_season = $season - 1;
 
-  echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . $previous_episode . '"> <button id="previousEpisode" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous episode</h3></button></a>';
-  echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . ++$episode . '"> <button id="nextEpisode" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next episode</h3></button></a>';
-  echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $previous_season . '&episode=' . --$episode . '"> <button id="previousSeason" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous season</h3></button></a>';
-  echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&episode=1"> <button id="nextSeason" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next Season</h3></button></a>';
+# Buttons for navigating through seasons and episodes
+echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . $previous_episode . '"> <button id="previousEpisode" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous episode</h3></button></a>';
+echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . ++$episode . '"> <button id="nextEpisode" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next episode</h3></button></a>';
+echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $previous_season . '&episode=1"> <button id="previousSeason" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-left"></i> Previous season</h3></button></a>';
+echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&episode=1"> <button id="nextSeason" type="button" class="btn btn-secondary" role="button"><h3><i class="fa-solid fa-caret-right"></i> Next Season</h3></button></a>';
 
-  ?>
-
+?>
 
 <script>
   var showID = '<?= $showID ?>';
   var episode = '<?= $episode ?>';
-  var season = '<?= $season ?>' -1;
+  var season = '<?= $season ?>' - 1;
 
   const season_url = '/season/';
   const base_url = 'https://api.themoviedb.org/3/tv/'
@@ -69,7 +69,7 @@ include('includes/bootstrap.html');
   const api_url = base_url + showID + season_url + season + api_key;
   const api_url2 = base_url + showID + api_key;
 
-
+  // Get number of epsiodes in season
   function getEpisodes(api_url) {
     fetch(api_url)
       .then(response => response.json())
@@ -78,37 +78,44 @@ include('includes/bootstrap.html');
       })
   }
 
+  // Get number of seasons in show
   function getSeasons(api_url2) {
     fetch(api_url2)
       .then(response2 => response2.json())
       .then(data2 => {
         checkSeason(data2.number_of_seasons);
-        console.log(data2.number_of_seasons);
       })
   }
 
-
+  // Display buttons appropriately to number of episodes in a season
   function checkEpisode(episodeNo) {
-    if (episode <= episodeNo) {
+    if (episode < episodeNo) {
       document.getElementById("previousEpisode").style.display = "inline";
       document.getElementById("nextEpisode").style.display = "inline";
-    } 
-    if(episode == episodeNo || episode > episodeNo) {
+    }
+    if (episode == episodeNo || episode > episodeNo) {
       document.getElementById("previousEpisode").style.display = "inline";
       document.getElementById("nextEpisode").style.display = "none";
     }
+    if (episode == 1 || episode == 0) {
+      document.getElementById("previousEpisode").style.display = "none";
+    }
   }
 
+  // Display buttons appropriately to number of seasons in a show
   function checkSeason(seasonNo) {
-    if (season <= seasonNo) {
+    if (season < seasonNo) {
       console.log(season);
       document.getElementById("nextSeason").style.display = "inline";
       document.getElementById("previousSeason").style.display = "inline";
 
-    } 
-    if(season == seasonNo|| season > seasonNo) {
+    }
+    if (season == seasonNo || season > seasonNo) {
       document.getElementById("nextSeason").style.display = "none";
       document.getElementById("previousSeason").style.display = "inline";
+    }
+    if (season == 1 || season == 0) {
+      document.getElementById("previousSeason").style.display = "none";
     }
   }
 
