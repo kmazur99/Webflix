@@ -59,7 +59,7 @@ echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&epi
 
 <script>
   var showID = '<?= $showID ?>';
-  var episode = '<?= $episode ?>';
+  var episode = '<?= $episode ?>' - 1;
   var season = '<?= $season ?>' - 1;
 
   const season_url = '/season/';
@@ -87,6 +87,7 @@ echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&epi
       })
   }
 
+  console.log(episode);
   // Display buttons appropriately to number of episodes in a season
   function checkEpisode(episodeNo) {
     if (episode < episodeNo) {
