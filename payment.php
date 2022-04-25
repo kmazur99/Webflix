@@ -12,6 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 # Open database connection.
 require('connect_db.php');
 
+$transaction_id = rand(1000000000000, 9999999999999);
 
 # Retrieve items from 'users' database table.
 $q = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
@@ -107,6 +108,14 @@ if (mysqli_num_rows($r) > 0) {
             <h6>&pound99.00</h6>
             </div>
             </div>
+            <div class="row">
+        <div class="col-5" style="text-align: left;">
+            <h6>Transaction ID</h6>
+            </div>
+            <div class="col-7" style="text-align: right;">
+            <h6>' . $transaction_id . '</h6>
+            </div>
+            </div>
 
             <br>
             <a href="home.php"> <button type="button" class="btn btn-secondary btn-block" role="button">Home</button></a>
@@ -194,5 +203,3 @@ if (mysqli_num_rows($r) > 0) {
 }
 
 include('includes/bootstrap.html');
-
-?>

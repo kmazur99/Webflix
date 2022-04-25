@@ -92,7 +92,7 @@ $categories_result = mysqli_query($link, $categories_query);
             </div>
             <div class="card-body">
                 <div class="categories-table">
-                    <table id="categories_table" class="table table-striped table-hover" style="table-layout: fixed;">
+                    <table id="categories_table" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -144,10 +144,16 @@ $categories_result = mysqli_query($link, $categories_query);
                             <?php
                             while ($row = mysqli_fetch_array($movie_result)) {
                                 echo '
+                                <style>
+    .hideOverflow {
+        max-width: 10px;
+        overflow: hidden;
+    }
+</style>
       <tr>
        <td>' . $row["id"] . '</td>
        <td>' . $row["movie_title"] . '</td>
-       <td>' . $row["further_info"] . '</td>
+       <td class="hideOverflow">' . $row["further_info"] . '</td>
        <td>' . $row["img"] . '</td>
        <td>' . $row["category"] . '</td>
        <td>' . $row["release_date"] . '</td>

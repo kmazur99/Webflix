@@ -198,3 +198,8 @@ select {
     font-size: 24;
     padding: 5px;
 }
+
+.hideOverflow {
+    max-width: 10px;
+    overflow: hidden;
+}
