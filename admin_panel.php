@@ -1,20 +1,17 @@
-<?php # DISPLAY COMPLETE REGISTRATION PAGE.
-include('navbar.php');
+<?php
 # Access session.
 session_start();
 
+# Load bootstrap + CSS
+include('includes/bootstrap.html');
 # Redirect if not logged in.
-if (!isset($_SESSION['user_id'])) {
-    require('login_tools.php');
-    load();
-}
-
+require('redirect.php');
 # Open database connection.
 require('connect_db.php');
+# display navbar
+include('navbar.php');
 
-include('includes/bootstrap.html');
-
-// Access the data from the database.
+# Access the data from the database.
 $user_query = "SELECT * FROM users ORDER BY user_id ASC";
 $user_result = mysqli_query($link, $user_query);
 
@@ -27,12 +24,13 @@ $show_result = mysqli_query($link, $show_query);
 $categories_query = "SELECT * FROM categories ORDER BY category_id ASC";
 $categories_result = mysqli_query($link, $categories_query);
 ?>
+
 <html>
 
 <head>
     <title>Admin Panel - Webflix</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script src="https://kmazur99.github.io/table_editor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://kmazur99.github.io/table_editor.js"></script>
 
 
 </head>
@@ -47,8 +45,8 @@ $categories_result = mysqli_query($link, $categories_query);
             </div>
             <div class="card-body">
                 <div class="user-table">
-                    <table id="user_table" class="table table-striped table-hover">
-                        <thead class="thead">
+                    <table id="user_table" class="table table-striped table-hover" style="table-layout: fixed">
+                        <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>First Name</th>
@@ -58,7 +56,7 @@ $categories_result = mysqli_query($link, $categories_query);
                                 <th>Contact Number</th>
                                 <th>Country</th>
                                 <th>Joined</th>
-                                <th>Subscription</th>
+                                <th>Account Type</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -82,7 +80,6 @@ $categories_result = mysqli_query($link, $categories_query);
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
 
@@ -144,16 +141,10 @@ $categories_result = mysqli_query($link, $categories_query);
                             <?php
                             while ($row = mysqli_fetch_array($movie_result)) {
                                 echo '
-                                <style>
-    .hideOverflow {
-        max-width: 10px;
-        overflow: hidden;
-    }
-</style>
       <tr>
        <td>' . $row["id"] . '</td>
        <td>' . $row["movie_title"] . '</td>
-       <td class="hideOverflow">' . $row["further_info"] . '</td>
+       <td class="description">' . $row["further_info"] . '</td>
        <td>' . $row["img"] . '</td>
        <td>' . $row["category"] . '</td>
        <td>' . $row["release_date"] . '</td>
@@ -231,7 +222,7 @@ $categories_result = mysqli_query($link, $categories_query);
 
 </html>
 <script>
-
+    // Pass the data to the appropriate action
     $(document).ready(function() {
         $('#user_table').Tabledit({
             url: 'action_user.php',
@@ -328,8 +319,6 @@ $categories_result = mysqli_query($link, $categories_query);
         });
 
     });
-
-    
 </script>
 
 <!-- New category popup -->

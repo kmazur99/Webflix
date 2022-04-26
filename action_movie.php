@@ -3,6 +3,7 @@
 # Open database connection.
 require('connect_db.php');
 
+# Get movie data
 $input = filter_input_array(INPUT_POST);
 
 $movie_title = mysqli_real_escape_string($link, $input["movie_title"]);
@@ -15,6 +16,7 @@ $release_date = mysqli_real_escape_string($link, $input["release_date"]);
 $languages= mysqli_real_escape_string($link, $input["languages"]);
 $duration = mysqli_real_escape_string($link, $input["duration"]);
 
+# Edit movie details.
 if($input["action"] === 'edit')
 {
  $query = "
@@ -34,6 +36,7 @@ if($input["action"] === 'edit')
  mysqli_query($link, $query);
 
 }
+# Delete movie.
 if($input["action"] === 'delete')
 {
  $query = "
@@ -43,6 +46,7 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+# Add new movie.
 if(isset($_POST['new_movie_title'])){
 
     $new_title = mysqli_real_escape_string($link,$_POST[ 'new_movie_title' ]);
@@ -61,7 +65,5 @@ if(isset($_POST['new_movie_title'])){
     header('location: admin_panel.php');
 }
 
-
 echo json_encode($input);
-
 ?>

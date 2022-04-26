@@ -3,6 +3,7 @@
 # Open database connection.
 require('connect_db.php');
 
+# Get show details
 $input = filter_input_array(INPUT_POST);
 
 $show_title = mysqli_real_escape_string($link, $input["show_title"]);
@@ -16,6 +17,7 @@ $languages= mysqli_real_escape_string($link, $input["languages"]);
 $seasons= mysqli_real_escape_string($link, $input["seasons"]);
 $episodes = mysqli_real_escape_string($link, $input["episodes"]);
 
+# Edit show details.
 if($input["action"] === 'edit')
 {
  $query = "
@@ -36,6 +38,7 @@ if($input["action"] === 'edit')
  mysqli_query($link, $query);
 
 }
+# Delete show.
 if($input["action"] === 'delete')
 {
  $query = "
@@ -45,6 +48,7 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+# Add new show.
 if(isset($_POST['new_show_title'])){
 
     $new_title = mysqli_real_escape_string($link,$_POST[ 'new_show_title' ]);

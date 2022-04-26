@@ -1,14 +1,14 @@
-<?php # DISPLAY COMPLETE LOGGED IN PAGE.
+<?php
 
 # Access session.
 session_start();
 
+# Load bootstrap + CSS
+include('includes/bootstrap.html');
 # Check if user is signed in
 include('redirect.php');
-
 # Display navbar
 include('navbar.php');
-
 # Open database connection.
 require('connect_db.php');
 
@@ -24,7 +24,6 @@ if (mysqli_num_rows($r) > 0) {
   <h1>TV Shows</h1>
   <hr>
   <div class="row">';
-  # Display body section.
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
      <div class="col" style="margin-top: 2rem";>
@@ -40,10 +39,3 @@ if (mysqli_num_rows($r) > 0) {
   # Close database connection.
   mysqli_close($link);
 }
-
-# Or display message.
-else {
-  echo '<p>There are currently no movies coming to the cinema.</p>';
-}
-
-include('includes/bootstrap.html');

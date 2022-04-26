@@ -3,6 +3,7 @@
 # Open database connection.
 require('connect_db.php');
 
+# Get user data.
 $input = filter_input_array(INPUT_POST);
 
 $first_name = mysqli_real_escape_string($link, $input["first_name"]);
@@ -14,6 +15,7 @@ $country = mysqli_real_escape_string($link, $input["country"]);
 $reg_date = mysqli_real_escape_string($link, $input["reg_date"]);
 $subscription = mysqli_real_escape_string($link, $input["subscription"]);
 
+# Edit user details.
 if($input["action"] === 'edit')
 {
  $query = "
@@ -32,6 +34,7 @@ if($input["action"] === 'edit')
  mysqli_query($link, $query);
 
 }
+# Delete user.
 if($input["action"] === 'delete')
 {
  $query = "

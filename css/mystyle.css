@@ -181,11 +181,10 @@ input[type=text]:disabled {
 }
 
 td {
-    word-wrap: break-word;
     color: #fff;
 }
 
-th {
+thead {
     color: #fff;
 }
 
@@ -199,7 +198,8 @@ select {
     padding: 5px;
 }
 
-.hideOverflow {
-    max-width: 10px;
+td.tabledit-view-mode {
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

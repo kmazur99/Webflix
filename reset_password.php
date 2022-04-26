@@ -1,10 +1,11 @@
-<?php # DISPLAY COMPLETE REGISTRATION PAGE.
+<?php
 
 session_start();
 
 # Open database connection.
 require('connect_db.php');
 
+# Load bootstrap + CSS
 include('includes/bootstrap.html');
 
 # Display error message if passwords don't match
@@ -17,6 +18,7 @@ if(isset($_GET['Message'])){
 </footer></div>  ';
 }
 
+# Display navbar
 echo '
 <nav class="navbar sticky-top navbar-expand-sm bg-dark" style="background-color: #171717 !important;">
         <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>

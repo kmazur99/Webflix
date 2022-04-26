@@ -10,15 +10,15 @@ require('connect_db.php');
 $query = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
 $result = mysqli_query($link, $query);
 if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $account_type = $row['account_type'];
-    }
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    $account_type = $row['account_type'];
   }
+}
 
 # Display navbar only when user is logged in
 if ($isLoggedIn) {
- 
-echo '
+
+  echo '
 <nav class="navbar sticky-top navbar-expand-sm bg-dark ">
         <a class="navbar-brand" href="home.php"><span style="color:#C72606;">Webflix</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,16 +45,15 @@ echo '
               </div>
             </li>
             ';
-            # Display admin panel
-            if($account_type == 'Admin'){
-              echo'
+  # Display admin panel
+  if ($account_type == 'Admin') {
+    echo '
               <li class="nav-item">
               <a class="nav-link" href="admin_panel.php">Admin Panel</a>
             </li>  ';
-            }echo '
-
+  }
+  echo '
         </div>
-        
       </nav>
 ';
 }

@@ -1,18 +1,18 @@
-<?php # DISPLAY COMPLETE LOGGED IN PAGE.
+<?php
 
 # Access session.
 session_start();
 
-# Check if user is signed in
+# Load bootstrap + CSS
+include('includes/bootstrap.html');
+# Redirect if not logged in
 include('redirect.php');
-
 # Display navbar
 include('navbar.php');
-
 # Open database connection.
 require('connect_db.php');
 
-# Retrieve movies from 'movie' database table.
+# Retrieve movies from the database.
 $q = "SELECT * FROM movie";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
@@ -24,7 +24,7 @@ if (mysqli_num_rows($r) > 0) {
   <h1>Movies</h1>
   <hr>
   <div class="row">';
-  # Display body section.
+
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
      <div class="col" style="margin-top: 2rem";>
@@ -38,12 +38,7 @@ if (mysqli_num_rows($r) > 0) {
   }
 }
 
-# Or display message.
-else {
-  echo '<p>There are currently no movies showing.</p>';
-}
-
-# Retrieve tv shows
+# Retrieve tv shows from the database.
 $q = "SELECT * FROM tv_show";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
@@ -56,7 +51,7 @@ if (mysqli_num_rows($r) > 0) {
   <h1>TV Shows</h1>
   <hr>
   <div class="row">';
-  # Display body section.
+
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
      <div class="col" style="margin-top: 2rem";>
@@ -69,14 +64,7 @@ if (mysqli_num_rows($r) > 0) {
       </div>
       ';
   }
-
-  # Close database connection.
-  mysqli_close($link);
 }
 
-# Or display message.
-else {
-  echo '<p>There are currently no tv shows to display.</p>';
-}
-
-include('includes/bootstrap.html');
+# Close database connection.
+mysqli_close($link);

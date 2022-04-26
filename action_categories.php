@@ -3,10 +3,12 @@
 # Open database connection.
 require('connect_db.php');
 
+# Get category name
 $input = filter_input_array(INPUT_POST);
 
 $category_name = mysqli_real_escape_string($link, $input["category_name"]);
 
+# Edit category.
 if($input["action"] === 'edit')
 {
  $query = "
@@ -18,6 +20,7 @@ if($input["action"] === 'edit')
  mysqli_query($link, $query);
 
 }
+# Delete category.
 if($input["action"] === 'delete')
 {
  $query = "
@@ -27,6 +30,7 @@ if($input["action"] === 'delete')
  mysqli_query($link, $query);
 }
 
+# Add new category.
 if(isset($_POST['new_category'])){
 
     $new_category = mysqli_real_escape_string($link,$_POST[ 'new_category' ]);

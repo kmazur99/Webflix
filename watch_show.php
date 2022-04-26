@@ -1,18 +1,20 @@
 <?php
-include('navbar.php');
+
 session_start();
 
+# Display navbar
+include('navbar.php');
 # Check if user is logged in
-$isLoggedIn = isset($_SESSION['user_id']);
-
+include('redirect.php');
 # Open database connection.
 require('connect_db.php');
+# Check if the user has premium subscription
 require('checkPremium.php');
 
-# Get passed product id and assign it to a variable.
+# Get passed the show id and assign it to a variable.
 if (isset($_GET['id'])) $id = $_GET['id'];
 
-# Retrieve selective item data from 'movie' database table. 
+# Retrieve selective show data from the database.
 $q = "SELECT * FROM tv_show WHERE id = $id";
 $r = mysqli_query($link, $q);
 
@@ -29,7 +31,6 @@ echo '
     frameborder="no" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
     </iframe>
     </div>
-    </div>
         ';
 
 # Extract show ID
@@ -38,12 +39,11 @@ $showID = substr($row['link'], strpos($row['link'], "=") + 1);
 # Close database connection.
 mysqli_close($link);
 
+# Load bootstrap + css
 include('includes/bootstrap.html');
-
 ?>
 
 <html>
-
 <div class="container-fluid" style="padding-top: 10px; padding-bottom: 20px;">
 <?php
 $previous_episode = $episode - 1;
@@ -136,8 +136,8 @@ echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&epi
     }
   }
 
+  // Call function to get number of seasons and episodes
   getEpisodesAndSeasons(api_url, api_url2);
 
 </script>
-
 </html>

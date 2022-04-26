@@ -3,8 +3,10 @@
 # Open database connection.
 require('connect_db.php');
 
+# Get email passed from the form.
 $to = $_POST[ 'email' ];
 
+# Email message.
 $message = "
 <html>
 <head>
@@ -19,6 +21,7 @@ $message = "
 </html>
 ";
 
+# send email
 $q = "SELECT * FROM users WHERE email='$to'";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {

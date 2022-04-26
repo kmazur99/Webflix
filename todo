@@ -1,4 +1,8 @@
-ALL
+Tidy up
 ---
-- Tidy up redundant code and make it more reusable
-
+- forgot_password
+- payment
+- register
+- reset_password
+- user
+- CSS

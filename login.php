@@ -1,12 +1,15 @@
-  <?php # DISPLAY COMPLETE LOGIN PAGE.
+  <?php
+  # Load bootstrap + CSS
   include('includes/bootstrap.html');
 
+  # Display navbar
   echo '
   <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
           <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
         </nav>
   ';
 
+  # Display logout popup
   if (isset($_GET['Success'])) {
     echo '<div class="alert alert-dark" role="alert">
     <h4 class="alert-heading">Logout</h4>
@@ -19,7 +22,6 @@
   # Display any error messages if present.
   if (isset($errors) && !empty($errors)) {
     $title = 'Log in error';
-
     echo '
     <div class="alert alert-dark" role="alert">
 	   <h4 class="alert-heading">' . $title . '</h4>';
@@ -31,7 +33,7 @@
 <footer">
   </footer></div> ';
   }
-?>
+  ?>
   <br>
   <title>Sign In - Webflix</title>
   <div class="container">
@@ -75,9 +77,3 @@
       </div>
     </div>
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
-
-  

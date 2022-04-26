@@ -2,14 +2,11 @@
 # Access session.
 session_start();
 
-
-
 # Check form submitted.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     # Connect to the database.
     require('connect_db.php');
 
-    # Initialize an error array.
     $errors = array();
 
     # Check for a password and matching input passwords.
@@ -22,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $errors[] = 'Enter your password.';
     }
-
-
+    
+    # Get the email address.
     $email_address = $_POST['email'];
 
-    # On success new password into 'users' database table.
+    # Change the password for the user with the given email address.
     if (empty($errors)) {
         $q = "UPDATE users SET pass= SHA2('$p',256) WHERE email='$email_address'";
         $r = @mysqli_query($link, $q);
