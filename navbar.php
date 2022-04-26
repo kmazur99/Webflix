@@ -12,6 +12,7 @@ $result = mysqli_query($link, $query);
 if (mysqli_num_rows($result) > 0) {
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     $account_type = $row['account_type'];
+    $name = $row['first_name'];
   }
 }
 
@@ -37,7 +38,7 @@ if ($isLoggedIn) {
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               ' . $_SESSION['first_name'] . '
+               ' . $name . '
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="user.php">Account settings</a>
@@ -49,7 +50,7 @@ if ($isLoggedIn) {
   if ($account_type == 'Admin') {
     echo '
               <li class="nav-item">
-              <a class="nav-link" href="admin_panel.php">Admin Panel</a>
+              <a class="nav-link" href="admin_panel.php" style="color: #C72606 !important;">Admin Panel</a>
             </li>  ';
   }
   echo '

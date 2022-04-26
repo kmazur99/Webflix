@@ -149,7 +149,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container">
   <div class="row">
     <div class="col-sm">
-
     </div>
     <div class="col-sm">
       <div class="card card-dark mb-3">

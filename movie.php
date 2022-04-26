@@ -3,6 +3,8 @@
 # Access session.
 session_start();
 
+# Load bootstrap + CSS
+include('includes/bootstrap.html');
 # Display navigation bar
 include('navbar.php');
 # Check if user is signed in
@@ -94,6 +96,3 @@ if (mysqli_num_rows($r) == 1) {
 }
 # Close database connection.
 mysqli_close($link);
-
-
-include('includes/bootstrap.html');

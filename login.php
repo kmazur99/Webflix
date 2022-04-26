@@ -34,6 +34,7 @@
   </footer></div> ';
   }
   ?>
+  
   <br>
   <title>Sign In - Webflix</title>
   <div class="container">
@@ -49,7 +50,6 @@
 
           <div class="card-body">
             <form action="login_action.php" method="post">
-
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="text" class="form-control" id="email" name="email" size="30" required>
@@ -68,7 +68,6 @@
               <div style="text-align:center">
                 <button type="submit" class="btn btn-secondary">Sign In</button>
               </div>
-
             </form>
           </div>
         </div>

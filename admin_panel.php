@@ -6,6 +6,8 @@ session_start();
 include('includes/bootstrap.html');
 # Redirect if not logged in.
 require('redirect.php');
+# Redirect if not an admin
+require('checkAdmin.php');
 # Open database connection.
 require('connect_db.php');
 # display navbar
@@ -26,19 +28,15 @@ $categories_result = mysqli_query($link, $categories_query);
 ?>
 
 <html>
-
 <head>
     <title>Admin Panel - Webflix</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://kmazur99.github.io/table_editor.js"></script>
-
-
 </head>
 
 <body>
-    <br />
-
     <div class="container">
+        <br>
         <div class="card card-dark mb-3">
             <div class="card-header">
                 <h5 class="card-title">Users</h5>
@@ -106,8 +104,6 @@ $categories_result = mysqli_query($link, $categories_query);
       </tr>
       ';
                             }
-
-
                             ?>
                         </tbody>
                     </table>
@@ -155,8 +151,6 @@ $categories_result = mysqli_query($link, $categories_query);
       </tr>
       ';
                             }
-
-
                             ?>
                         </tbody>
                     </table>
@@ -206,8 +200,6 @@ $categories_result = mysqli_query($link, $categories_query);
       </tr>
       ';
                             }
-
-
                             ?>
                         </tbody>
                     </table>
@@ -215,14 +207,11 @@ $categories_result = mysqli_query($link, $categories_query);
                 </div>
             </div>
         </div>
-
     </div>
-
 </body>
-
 </html>
 <script>
-    // Pass the data to the appropriate action
+    // Pass the user data to edited
     $(document).ready(function() {
         $('#user_table').Tabledit({
             url: 'action_user.php',
@@ -248,6 +237,7 @@ $categories_result = mysqli_query($link, $categories_query);
         });
     });
 
+    // Pass the movie data to edited
     $(document).ready(function() {
         $('#movie_table').Tabledit({
             url: 'action_movie.php',
@@ -274,6 +264,7 @@ $categories_result = mysqli_query($link, $categories_query);
         });
     });
 
+    // Pass the show data to be edited
     $(document).ready(function() {
         $('#show_table').Tabledit({
             url: 'action_show.php',
@@ -300,7 +291,8 @@ $categories_result = mysqli_query($link, $categories_query);
             }
         });
     });
-
+    
+    // Pass the categories to be edited
     $(document).ready(function() {
         $('#categories_table').Tabledit({
             url: 'action_categories.php',
@@ -317,7 +309,6 @@ $categories_result = mysqli_query($link, $categories_query);
                 }
             }
         });
-
     });
 </script>
 
@@ -328,7 +319,6 @@ $categories_result = mysqli_query($link, $categories_query);
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Category</h5>
             </div>
-
             <div class="modal-body">
                 <form action="action_categories.php" method="post">
                     <div class="form-group">
@@ -353,7 +343,6 @@ $categories_result = mysqli_query($link, $categories_query);
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Movie</h5>
             </div>
-
             <div class="modal-body">
                 <form action="action_movie.php" method="post">
                     <div class="form-group">
@@ -411,7 +400,6 @@ $categories_result = mysqli_query($link, $categories_query);
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New TV Show</h5>
             </div>
-
             <div class="modal-body">
                 <form action="action_show.php" method="post">
                     <div class="form-group">

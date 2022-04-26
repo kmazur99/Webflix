@@ -1,15 +1,18 @@
-<?php # DISPLAY COMPLETE REGISTRATION PAGE.
-include('navbar.php');
+<?php
+
 # Access session.
 session_start();
 
+# Load bootstrap + css
+include('includes/bootstrap.html');
+# Display navigation bar.
+include('navbar.php');
+# Open database connection.
+require('connect_db.php');
 # Redirect if not logged in.
-if (!isset($_SESSION['user_id'])) {
-    require('login_tools.php');
-    load();
-}
+include('redirect.php');
 
-# Display Error message to the user
+# Error message pop-up
 if (isset($_GET['Message'])) {
     echo '<div class="alert alert-dark" role="alert">
     <h4 class="alert-heading">Error</h4>
@@ -19,7 +22,7 @@ if (isset($_GET['Message'])) {
 </footer></div>  ';
 }
 
-# Display Success message to the user
+# Success message pop-up
 if (isset($_GET['Success'])) {
     echo '<div class="alert alert-dark" role="alert">
     <h4 class="alert-heading">Success</h4>
@@ -29,10 +32,7 @@ if (isset($_GET['Success'])) {
 </footer></div>  ';
 }
 
-# Open database connection.
-require('connect_db.php');
-
-# Retrieve items from 'users' database table.
+# Retrieve user data from the database.
 $q = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
@@ -111,19 +111,6 @@ if (mysqli_num_rows($r) > 0) {
 </div>
 </div>
 </div>
-
-';
-    }
-} else {
-    echo '<h3>No user details.</h3>';
-}
-
-# Retrieve items from 'users' database table.
-$q = "SELECT * FROM users WHERE user_id={$_SESSION['user_id']}";
-$r = mysqli_query($link, $q);
-if (mysqli_num_rows($r) > 0) {
-    while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
-        echo '
             <div class="col-sm">
             <div class="card card-dark mb-3">
             <div class="card-header"> 
@@ -152,7 +139,6 @@ if (mysqli_num_rows($r) > 0) {
         </ul>
         <br>
         <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#card">Update Card</button>
-      
       </form> 
       </div>
       </div>
@@ -161,33 +147,18 @@ if (mysqli_num_rows($r) > 0) {
       </div>
       ';
     }
-
-
-
     # Close database connection.
     mysqli_close($link);
-} else {
-    echo '<div class="alert alert-danger" alert-dismissible fade show" role="alert">
-		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		   </button>
-			<h1>Card Stored</h1>
-			<h3>No card stored.</h3>
-		</div>
-';
-}
-
-include('includes/bootstrap.html');
-
+} 
 ?>
 
+<!-- Change password pop-up -->
 <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="password" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Change Password</h5>
             </div>
-
             <div class="modal-body">
                 <form action="change-password.php" method="post">
                     <div class="form-group">
@@ -200,7 +171,6 @@ include('includes/bootstrap.html');
                     <div class="form-group">
                         <input type="password" name="pass2" class="form-control" placeholder="Confirm New Password" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
                     </div>
-
             </div>
             <div class="modal-footer">
                 <div class="form-group">
@@ -210,18 +180,16 @@ include('includes/bootstrap.html');
             </div>
             </form>
         </div>
-        <!--Close body-->
     </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
+</div>
 
+<!-- Update card pop-up -->
 <div class="modal fade" id="card" tabindex="-1" role="dialog" aria-labelledby="card" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Update Card</h5>
             </div>
-
             <div class="modal-body">
                 <form action="update-card.php" method="post">
                     <div class="form-group">
@@ -245,7 +213,6 @@ include('includes/bootstrap.html');
                             <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="exampleCvv" placeholder="CVV" name="cvv" size="3" value="<?php if (isset($_POST['cvv'])) echo $_POST['cvv']; ?>" required>
                         </div>
                     </div>
-
             </div>
             <div class="modal-footer">
                 <div class="form-group">
@@ -255,18 +222,16 @@ include('includes/bootstrap.html');
             </div>
             </form>
         </div>
-        <!--Close body-->
     </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
+</div>
 
+<!-- Cancel subscription pop-up -->
 <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Cancel Your Subscription?</h5>
             </div>
-
             <div class="modal-body">
                 <form action="process_cancellation.php" method="post">
                     <div class="form-group">
@@ -282,7 +247,5 @@ include('includes/bootstrap.html');
             </div>
             </form>
         </div>
-        <!--Close body-->
     </div>
-    <!--Close modal-body-->
-</div><!-- Close modal-fade-->
+</div>
