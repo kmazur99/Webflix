@@ -1,18 +1,22 @@
 <?php
 
+# Load bootstrap + css
+include('includes/bootstrap.html');
+
+# Display navbar
 echo '
   <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
           <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
         </nav>
   ';
 
-# Check form submitted.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   # Connect to the database.
   require('connect_db.php');
   # Initialize an error array.
   $errors = array();
-  # Check for a first name.
+
+  # Check for first name, last name and email.
   if (empty($_POST['first_name'])) {
     $errors[] = 'Enter your first name.';
   } else {
@@ -31,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = mysqli_real_escape_string($link, trim($_POST['email']));
   }
 
-
   # Check for a password and matching input passwords.
   if (!empty($_POST['pass1'])) {
     if ($_POST['pass1'] != $_POST['pass2']) {
@@ -44,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $errors[] = 'Enter your password.';
   }
 
+  # Check for the rest of the user details
   if (empty($_POST['card_number'])) {
     $errors[] = 'Enter your Card Number.';
   } else {
@@ -99,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  </footer></div>  ';
   }
 
-  # On success register user inserting into 'users' database table.
+  # On success register the new user in the database.
   if (empty($errors)) {
     $q = "INSERT INTO users (first_name, last_name, DOB, email, contact_number, country, pass, card_number, exp_month, exp_year, cvv, reg_date) VALUES ('$fn', '$ln', '$DOB', '$email', '$contact_no', '$country', SHA2('$p',256), '$card_no', '$exp_m', '$exp_y', '$cvv', NOW() )";
     $r = @mysqli_query($link, $q);
@@ -116,15 +120,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
   </footer></div></div>
  ';
+ # unset values after completion
  unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
-
     }
-    
     # Close database connection.
     mysqli_close($link);
   }
 
-  # Or report errors.
+  # Report errors
   else {
     $title = 'Error';
     echo '<div class="container"><div class="alert alert-dark" role="alert">
@@ -139,8 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_close($link);
   }
 }
-include('includes/bootstrap.html');
 ?>
+
 <title>Register - Webflix</title>
 <br>
 <div class="container">
@@ -220,14 +223,6 @@ include('includes/bootstrap.html');
       </div>
     </div>
     <div class="col-sm">
-
     </div>
   </div>
 </div>
-
-<script>
-function clearForm() {
-  document.getElementById('first_name').value = '';
-}
-</script>
-
