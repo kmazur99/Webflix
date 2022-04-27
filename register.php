@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if ($exp_m > 12 || $exp_m < 01) {
-    $errors[] = 'Enter a valid month.';
+    $errors[] = 'Enter a valid expiry month.';
   }
 
   if (empty($_POST['exp_year'])) {
