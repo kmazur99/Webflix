@@ -26,12 +26,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'Enter expiry month.';
     }
 
+    if($m > 12 || $m < 01){
+        $errors[] = 'Enter a valid expiry month.';
+      }
+
     # Check for Expiry year.
     if (!empty($_POST['exp_year'])) {
         $y = mysqli_real_escape_string($link, trim($_POST['exp_year']));
     } else {
         $errors[] = 'Enter expiry year.';
     }
+
+    if($y < date("Y")){
+        $errors[] = 'Enter a valid expiry year.';
+      }
 
     # Check for cvv.
     if (!empty($_POST['cvv'])) {
@@ -60,8 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     # Or report errors.
     else {
-        $Message = urlencode("Error updating card details");
-        header("Location:user.php?Message=".$Message);
+        foreach ($errors as $msg) {
+        header("Location:user.php?Message=".$msg);
+        }
         die;
     }
 }

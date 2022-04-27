@@ -72,16 +72,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $DOB = mysqli_real_escape_string($link, trim($_POST['DOB']));
   }
 
+  # Validate user age
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($DOB), date_create($today));
+    $age = $diff->format('%y');
+    if ($age < 18) {
+      $errors[] = 'You must be 18 or over to register.';
+    } 
+
   if (empty($_POST['exp_month'])) {
     $errors[] = 'Enter your Card Exp Month.';
   } else {
     $exp_m = mysqli_real_escape_string($link, trim($_POST['exp_month']));
   }
 
+  if ($exp_m > 12 || $exp_m < 01) {
+    $errors[] = 'Enter a valid month.';
+  }
+
   if (empty($_POST['exp_year'])) {
     $errors[] = 'Enter your Card Exp Year.';
   } else {
     $exp_y = mysqli_real_escape_string($link, trim($_POST['exp_year']));
+  }
+
+  if ($exp_y < date("Y")) {
+    $errors[] = 'Enter a valid expiry year.';
   }
 
   if (empty($_POST['cvv'])) {
@@ -103,6 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  </footer></div>  ';
   }
 
+
+
   # On success register the new user in the database.
   if (empty($errors)) {
     $q = "INSERT INTO users (first_name, last_name, DOB, email, contact_number, country, pass, card_number, exp_month, exp_year, cvv, reg_date) VALUES ('$fn', '$ln', '$DOB', '$email', '$contact_no', '$country', SHA2('$p',256), '$card_no', '$exp_m', '$exp_y', '$cvv', NOW() )";
@@ -120,8 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
   </footer></div></div>
  ';
- # unset values after completion
- unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
+      # unset values after completion
+      unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
     }
     # Close database connection.
     mysqli_close($link);
@@ -142,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_close($link);
   }
 }
+
 ?>
 
 <title>Register - Webflix</title>
@@ -174,17 +193,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-              <label for="examplePassword">Password</label>
-              <input type="password" class="form-control" id="examplePassword" name="pass1" size="30" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="examplePassword2">Confirm Password</label>
-              <input type="password" class="form-control" id="examplePassword2" name="pass2" size="30" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
-            </div>
+                <label for="examplePassword">Password</label>
+                <input type="password" class="form-control" id="examplePassword" name="pass1" size="30" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="examplePassword2">Confirm Password</label>
+                <input type="password" class="form-control" id="examplePassword2" name="pass2" size="30" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="examplePhoneNo">Contact number</label>
-              <input type="number" class="form-control" id="examplePhoneNo" name="contact_number" size="20" value="<?php if (isset($_POST['contact_number'])) echo $_POST['contact_number']; ?>" required>
+              <input type="text" pattern="[0-9]{7,12}" title="A contact number between 7 and 12 digits long" class="form-control" id="examplePhoneNo" name="contact_number" size="20" value="<?php if (isset($_POST['contact_number'])) echo $_POST['contact_number']; ?>" required>
             </div>
             <div class="form-group">
               <label for="exampleCountry">Country</label>
@@ -214,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
             <div style="text-align:center">
-            <br>
+              <br>
               <button type="submit" class="btn btn-secondary" name="register">Create Account</button>
             </div>
           </form>
