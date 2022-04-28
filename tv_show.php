@@ -40,8 +40,6 @@ if (mysqli_num_rows($r) == 1) {
 
   $category = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
-  $_SESSION['cart'][$id] = array('quantity' => 1, 'price' => $row['mov_price']);
-
   echo '
       <title>Webflix</title>
         <br>
