@@ -73,12 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   # Validate user age
-    $today = date("Y-m-d");
-    $diff = date_diff(date_create($DOB), date_create($today));
-    $age = $diff->format('%y');
-    if ($age < 18) {
-      $errors[] = 'You must be 18 or over to register.';
-    } 
+  $today = date("Y-m-d");
+  $diff = date_diff(date_create($DOB), date_create($today));
+  $age = $diff->format('%y');
+  if ($age < 18) {
+    $errors[] = 'You must be 18 or over to register.';
+  }
 
   if (empty($_POST['exp_month'])) {
     $errors[] = 'Enter your Card Exp Month.';
@@ -110,13 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (empty($errors)) {
     $q = "SELECT user_id FROM users WHERE email='$email'";
     $r = @mysqli_query($link, $q);
-    unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
-    $title = 'Email already registered';
     if (mysqli_num_rows($r) != 0) $errors[] = 'An account is already registered with this email address
     <hr>
-<footer">
-<a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
- </footer></div>  ';
+    <footer">
+    <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
+    </footer></div>  ';
   }
 
 
