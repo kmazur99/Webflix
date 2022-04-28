@@ -10,7 +10,7 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
-        # Change the subscription status
+            # Change the subscription status
             $q = "UPDATE users SET subscription='Basic' WHERE user_id={$_SESSION['user_id']}";
             $r = @mysqli_query($link, $q);
 
