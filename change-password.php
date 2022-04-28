@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $r = @mysqli_query($link, $q);
         if ($r) {
             $Message = urlencode("Password has been changed successfully.");
-            header("Location:user.php?Success=".$Message);
+            header("Location:user.php?Success=" . $Message);
             die;
         } else {
             echo "Error updating record: " . $link->error;
@@ -47,9 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     # Report errors.
     else {
-    $Message = urlencode("Passwords do not match.");
-    header("Location:user.php?Message=".$Message);
-    die;
-        
+        $Message = urlencode("Passwords do not match.");
+        header("Location:user.php?Message=" . $Message);
+        die;
     }
 }

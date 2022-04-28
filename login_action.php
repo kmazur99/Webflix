@@ -20,8 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['first_name'] = $data['first_name'];
     $_SESSION['last_name'] = $data['last_name'];
     load('home.php');
-  }
-  else {
+  } else {
     $errors = $data;
   }
 
