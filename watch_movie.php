@@ -30,7 +30,6 @@ $r = mysqli_query($link, $q);
     </div>
         ';
 
-
 # Close database connection.
 mysqli_close($link);
 

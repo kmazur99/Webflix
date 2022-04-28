@@ -132,7 +132,6 @@ echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&epi
       document.getElementById("nextSeason").style.display = "none";
     }
     if((season > seasonNo) && (episode > episodeNo)){
-      
     }
   }
 
