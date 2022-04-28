@@ -118,7 +118,7 @@ if (mysqli_num_rows($r) > 0) {
                 <input type="text" pattern="[0-9]{3}" title="Please enter a vaild 3 digit CVV code" class="form-control" id="cvv" name="cvv" placeholder="Confirm CVV" required>
                 ';
       if (isset($_GET['errMessage'])) {
-        echo '<p style="color: #C72606;">Your data doesn\'t match our records</p>';
+        echo '<p style="color: #C72606;">'.$_GET['errMessage'].'</p>';
       }
       echo '
               </div>

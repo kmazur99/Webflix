@@ -20,7 +20,7 @@ if (mysqli_num_rows($r) > 0) {
             header("Location:payment.php?Success=" . $Success);
             die;
         } else {
-            $errMessage = urlencode("Details don't match our records");
+            $errMessage = urlencode("Your data doesn't match our records");
             header("Location:payment.php?errMessage=" . $errMessage);
             die;
         }
