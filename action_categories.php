@@ -36,10 +36,7 @@ if(isset($_POST['new_category'])){
     $new_category = mysqli_real_escape_string($link,$_POST[ 'new_category' ]);
     $query = "INSERT INTO categories (category_name) VALUES ('$new_category')";
     mysqli_query($link, $query);
-
     header('location: admin_panel.php');
 }
 
 echo json_encode($input);
-
-?>
