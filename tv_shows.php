@@ -19,9 +19,13 @@ $categories_query = "SELECT * FROM categories ORDER BY category_id ASC";
 $categories_result = mysqli_query($link, $categories_query);
 
 # Display category dropdowns
-echo'<select id="genre" name="genre" onchange="changeGenre(this.value)">';
-echo'<option value=""disabled selected>Category</option>';
-echo'<option value="all">All</option>';
+echo'
+<title>TV Shows - Webflix</title>
+  <br>
+  <div class="container-fluid">
+<select id="genre" name="genre" onchange="changeGenre(this.value)" style="float: right;">
+<option value=""disabled selected>Category</option>
+<option value="all">All</option>';
 
 # Add categories to the dropdown menu
 while ($row = mysqli_fetch_array($categories_result)) {
@@ -46,9 +50,6 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
-  <title>TV Shows - Webflix</title>
-  <br>
-  <div class="container-fluid">
   <h1>TV Shows</h1>
   <hr>
   <div class="row">';
