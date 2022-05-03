@@ -14,6 +14,7 @@ $contact_number = mysqli_real_escape_string($link, $input["contact_number"]);
 $country = mysqli_real_escape_string($link, $input["country"]);
 $reg_date = mysqli_real_escape_string($link, $input["reg_date"]);
 $subscription = mysqli_real_escape_string($link, $input["subscription"]);
+$status = mysqli_real_escape_string($link, $input["status"]);
 
 # Edit user details.
 if($input["action"] === 'edit')
@@ -27,7 +28,8 @@ if($input["action"] === 'edit')
  contact_number = '".$contact_number."' , 
  country = '".$country."' , 
  reg_date = '".$reg_date."' , 
- subscription = '".$subscription."' 
+ subscription = '".$subscription."' ,
+ status = '".$status."'
  WHERE user_id = '".$input["user_id"]."'
  ";
 

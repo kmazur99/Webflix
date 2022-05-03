@@ -5,6 +5,8 @@ session_start();
 
 # Load bootstrap + css
 include('includes/bootstrap.html');
+# Check account status
+require('checkStatus.php');
 # Display navbar
 include('navbar.php');
 # Redirect if not logged in.

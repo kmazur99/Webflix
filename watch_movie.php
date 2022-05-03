@@ -2,6 +2,8 @@
 
 session_start();
 
+# Check account status
+require('checkStatus.php');
 # Display navbar
 include('navbar.php');
 # Check if user is logged in

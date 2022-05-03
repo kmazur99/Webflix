@@ -5,6 +5,8 @@ session_start();
 
 # Load bootstrap + css
 include('includes/bootstrap.html');
+# Check account status
+require('checkStatus.php');
 # Display navigation bar.
 include('navbar.php');
 # Open database connection.

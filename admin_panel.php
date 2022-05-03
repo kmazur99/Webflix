@@ -55,6 +55,7 @@ $categories_result = mysqli_query($link, $categories_query);
                                 <th>Country</th>
                                 <th>Joined</th>
                                 <th>Account Type</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -71,6 +72,7 @@ $categories_result = mysqli_query($link, $categories_query);
        <td>' . $row["country"] . '</td>
        <td>' . $row["reg_date"] . '</td>
        <td>' . $row["subscription"] . '</td>
+       <td>' . $row["status"] . '</td>
       </tr>
       ';
                             }
@@ -225,7 +227,8 @@ $categories_result = mysqli_query($link, $categories_query);
                     [5, 'contact_number'],
                     [6, 'country'],
                     [7, 'reg_date'],
-                    [8, 'subscription']
+                    [8, 'subscription'],
+                    [9, 'status']
                 ]
             },
             restoreButton: false,
