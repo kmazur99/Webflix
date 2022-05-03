@@ -84,3 +84,4 @@
     </div>
   </div>
   ';
+  include('footer.html');

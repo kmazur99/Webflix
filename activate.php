@@ -125,3 +125,4 @@ if (isset($_GET['email'])) {
     </div>
     </div>';
 }
+include('footer.html');

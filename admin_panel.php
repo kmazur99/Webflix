@@ -4,6 +4,8 @@ session_start();
 
 # Load bootstrap + CSS
 include('includes/bootstrap.html');
+# Check account status
+require('checkStatus.php');
 # Redirect if not logged in.
 require('redirect.php');
 # Redirect if not an admin
@@ -456,3 +458,8 @@ $categories_result = mysqli_query($link, $categories_query);
         </div>
     </div>
 </div>
+<br>
+<br>
+<?php
+include('footer.html');
+?>

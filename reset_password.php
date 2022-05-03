@@ -93,3 +93,6 @@ echo '
     </div>
   </div>
   ';
+  
+# Display footer
+include('footer.html');

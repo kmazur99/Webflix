@@ -70,3 +70,5 @@ if (mysqli_num_rows($r) > 0) {
 
 # Close database connection.
 mysqli_close($link);
+
+include('footer.html');

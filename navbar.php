@@ -56,5 +56,6 @@ if ($isLoggedIn) {
   echo '
         </div>
       </nav>
+      
 ';
 }

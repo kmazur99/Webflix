@@ -33,6 +33,7 @@
 <footer">
   </footer></div> ';
   }
+  include('footer.html');
   ?>
   
   <br>

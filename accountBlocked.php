@@ -8,6 +8,9 @@ echo '
   <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
   </nav>
   ';
+  
+# Display footer
+include('footer.html');
 ?>
 
 <!-- Display message -->
