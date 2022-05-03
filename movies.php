@@ -14,8 +14,35 @@ include('navbar.php');
 # Open database connection.
 require('connect_db.php');
 
-# Retrieve movies from the database table.
-$q = "SELECT * FROM movie";
+# Retrieve categories from the database
+$categories_query = "SELECT * FROM categories ORDER BY category_id ASC";
+$categories_result = mysqli_query($link, $categories_query);
+
+# Display category dropdowns
+echo'<select id="genre" name="genre" onchange="changeGenre(this.value)">';
+echo'<option value=""disabled selected>Category</option>';
+echo'<option value="all">All</option>';
+
+# Add categories to the dropdown menu
+while ($row = mysqli_fetch_array($categories_result)) {
+echo'
+  <option value="'.$row['category_id'].'">'. $row['category_name'] . '</option>';
+}
+echo' </select>';
+
+if (isset($_GET['genre'])) {
+  $genre_id = $_GET['genre'];
+}
+
+# Display all movies
+if ($genre_id == 'all') {
+  $q = "SELECT * FROM movie";
+}
+else{
+# Display certain category
+$q = "SELECT * FROM movie WHERE category = $genre_id";
+}
+
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
@@ -42,3 +69,10 @@ if (mysqli_num_rows($r) > 0) {
   mysqli_close($link);
 }
 include('footer.html');
+?>
+<!-- Display correct category -->
+<script>
+function changeGenre(genre) {
+  window.location.href = "movies.php?genre=" + genre;
+}
+</script>

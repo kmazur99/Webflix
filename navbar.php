@@ -29,10 +29,10 @@ if ($isLoggedIn) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="movies.php">Movies</a>
+              <a class="nav-link" href="movies.php?genre=all">Movies</a>
             </li>     
             <li class="nav-item">
-              <a class="nav-link" href="tv_shows.php">TV Shows</a>
+              <a class="nav-link" href="tv_shows.php?genre=all">TV Shows</a>
             </li> 
             </ul>
             <ul class="navbar-nav">
