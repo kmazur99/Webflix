@@ -41,17 +41,28 @@ if (isset($_GET['genre'])) {
 # Display all movies
 if ($genre_id == 'all') {
   $q = "SELECT * FROM movie";
+
+  echo '
+  <h1>Movies</h1>';
 }
 else{
 # Display certain category
 $q = "SELECT * FROM movie WHERE category = $genre_id";
+
+$query = "SELECT * FROM categories WHERE category_id = $genre_id";
+$result = mysqli_query($link, $query);
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  $category_name = $row['category_name'];
+}
+echo '
+  <h1>'.$category_name.' Movies</h1>
+  ';
 }
 
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
-  echo '
-  <h1>Movies</h1>
+  echo'
   <hr>
   <div class="row">';
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -63,8 +74,13 @@ if (mysqli_num_rows($r) > 0) {
 				<h5 class="card-title">' . $row['movie_title'] . '</h5>
 			  </div>
 		  </div>
-      </div>';
+      </div>
+      ';
   }
+  echo'</div>
+  </div>
+  <br>
+  <br>';
 
   # Close database connection.
   mysqli_close($link);

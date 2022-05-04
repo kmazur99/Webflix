@@ -41,16 +41,27 @@ while ($row = mysqli_fetch_array($categories_result)) {
 # Display all shows
 if ($genre_id == 'all') {
   $q = "SELECT * FROM tv_show";
+
+  echo '
+  <h1>Tv Shows</h1>';
 }
 else{
 # Display certain category
 $q = "SELECT * FROM tv_show WHERE category = $genre_id";
+
+$query = "SELECT * FROM categories WHERE category_id = $genre_id";
+$result = mysqli_query($link, $query);
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  $category_name = $row['category_name'];
+}
+echo '
+  <h1>'.$category_name.' TV Shows</h1>
+  ';
 }
 $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
-  <h1>TV Shows</h1>
   <hr>
   <div class="row">';
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {

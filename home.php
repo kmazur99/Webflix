@@ -67,6 +67,13 @@ if (mysqli_num_rows($r) > 0) {
       ';
   }
 }
+echo'
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>';
 
 # Close database connection.
 mysqli_close($link);
