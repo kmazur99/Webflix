@@ -75,6 +75,11 @@ if (mysqli_num_rows($r) > 0) {
 		  </div>
       </div>';
   }
+  echo'</div>
+  </div>
+  <br>
+  <br>
+  <br>';
 
   # Close database connection.
   mysqli_close($link);
