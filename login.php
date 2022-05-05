@@ -31,7 +31,7 @@
     ';
     foreach ($errors as $msg) {
       echo ' 
-            <p> $msg </p>
+            <p> '.$msg.' </p>
       ';
     }
     echo '
