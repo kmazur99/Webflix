@@ -26,14 +26,14 @@ if (isset($_GET['episode'])) $episode = $_GET['episode'];
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
 echo '
-    <title>Webflix</title>
-    <div id="mv-info">
-    <div id="content-embed">
-    <iframe class="embed-responsive-item" src=' . $row['link'] . '&s=' . $season . '&e=' . $episode . ' 
-    frameborder="no" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
-    </iframe>
-    </div>
-        ';
+      <title>Webflix</title>
+      <div id="mv-info">
+      <div id="content-embed">
+      <iframe class="embed-responsive-item" src=' . $row['link'] . '&s=' . $season . '&e=' . $episode . ' 
+      frameborder="no" scrolling="no" allow="autoplay; encrypted-media" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
+      </iframe>
+      </div>
+    ';
 
 # Extract show ID
 $showID = substr($row['link'], strpos($row['link'], "=") + 1);
@@ -54,7 +54,9 @@ $previous_season = $season - 1;
 # Buttons for navigating through seasons and episodes
 echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . ++$episode . '"> <button id="nextEpisode" type="button" class="btn btn-secondary" role="button" style="float: right;"><h4><i class="fa-solid fa-caret-right"></i> Next episode</h4></button></a>';
 echo '<a href="watch_show.php?id=' . $row['id'] . '&season=' . ++$season . '&episode=1"> <button id="nextSeason" type="button" class="btn btn-secondary" role="button" style="float: right;"><h4><i class="fa-solid fa-caret-right"></i> Next Season</h4></button></a>';
+
 ?>
+
 <select id="season" name="season" onchange="location = this.value;">
   <option value="" disabled selected>Season</option>
 </select>

@@ -20,23 +20,25 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
-  <title>Webflix</title>
-  <br>
-  <div class="container-fluid">
-  <h1>Movies</h1>
-  <hr>
-  <div class="row">';
+        <title>Webflix</title>
+        <br>
+        <div class="container-fluid">
+        <h1>Movies</h1>
+        <hr>
+        <div class="row">
+  ';
 
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
-     <div class="col" style="margin-top: 2rem";>
-		 <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
-			  <div class="card text-center border-0">
-        <a href="movie.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
-				  <h5 class="card-title">' . $row['movie_title'] . '</h5>
-			   </div>
-		  </div>
-      </div>';
+          <div class="col" style="margin-top: 2rem";>
+          <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
+          <div class="card text-center border-0">
+          <a href="movie.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
+          <h5 class="card-title">' . $row['movie_title'] . '</h5>
+          </div>
+          </div>
+          </div>
+    ';
   }
 }
 
@@ -46,34 +48,36 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo '
-  <br>
-  <br>
-  <div class="container-fluid">
-  <br>
-  <h1>TV Shows</h1>
-  <hr>
-  <div class="row">';
+        <br>
+        <br>
+        <div class="container-fluid">
+        <br>
+        <h1>TV Shows</h1>
+        <hr>
+        <div class="row">
+  ';
 
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
-     <div class="col" style="margin-top: 2rem";>
-		 <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
-			  <div class="card text-center border-0">
-        <a href="tv_show.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
-				  <h5 class="card-title">' . $row['show_title'] . '</h5>
-			   </div>
-      </div>
-      </div>
-      ';
+          <div class="col" style="margin-top: 2rem";>
+          <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
+          <div class="card text-center border-0">
+          <a href="tv_show.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
+          <h5 class="card-title">' . $row['show_title'] . '</h5>
+          </div>
+          </div>
+          </div>
+    ';
   }
 }
 echo'
-</div>
-</div>
-</div>
-<br>
-<br>
-<br>';
+      </div>
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
+';
 
 # Close database connection.
 mysqli_close($link);

@@ -23,13 +23,13 @@ $r = mysqli_query($link, $q);
   $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
     echo '
-    <title>Webflix</title>
-    <div id="mv-info">
-    <div id="content-embed">
-    <iframe src=' . $row['link'] . ' 
-    frameborder="no" scrolling="no" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
-    </iframe>
-    </div>
+          <title>Webflix</title>
+          <div id="mv-info">
+          <div id="content-embed">
+          <iframe src=' . $row['link'] . ' 
+          frameborder="no" scrolling="no" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe></div>
+          </iframe>
+          </div>
         ';
 
 # Close database connection.

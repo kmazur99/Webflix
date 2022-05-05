@@ -4,38 +4,47 @@
 
   # Display navbar
   echo '
-  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
-          <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
+        <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
+        <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
         </nav>
   ';
 
   # Display logout popup
   if (isset($_GET['Success'])) {
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Logout</h4>
-    <p> ' . $_GET['Success'] . ' </p>
-  <hr>
-  <footer">
-  </footer></div>  ';
+    echo '
+          <div class="alert alert-dark" role="alert">
+          <h4 class="alert-heading">Logout</h4>
+          <p> ' . $_GET['Success'] . ' </p>
+          <hr>
+          <footer">
+          </footer>
+          </div> 
+    ';
   }
 
   # Display any error messages if present.
   if (isset($errors) && !empty($errors)) {
     $title = 'Log in error';
     echo '
-    <div class="alert alert-dark" role="alert">
-	   <h4 class="alert-heading">' . $title . '</h4>';
+          <div class="alert alert-dark" role="alert">
+	        <h4 class="alert-heading">' . $title . '</h4>
+    ';
     foreach ($errors as $msg) {
-      echo " <p> $msg</p>";
+      echo ' 
+            <p> $msg </p>
+      ';
     }
     echo '
-     <hr>
-<footer">
-  </footer></div> ';
+          <hr>
+          <footer">
+          </footer>
+          </div>
+    ';
   }
+
   include('footer.html');
   ?>
-  
+
   <br>
   <title>Sign In - Webflix</title>
   <div class="container">
@@ -48,7 +57,6 @@
             <h1 style="text-align: center">Sign In</h1>
             <hr>
           </div>
-
           <div class="card-body">
             <form action="login_action.php" method="post">
               <div class="form-group">

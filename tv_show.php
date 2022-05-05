@@ -43,7 +43,7 @@ if (mysqli_num_rows($r) == 1) {
   $category = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
   echo '
-      <title>Webflix</title>
+        <title>Webflix</title>
         <br>
         <div class="container-fluid">
         <div class="row">
@@ -58,7 +58,6 @@ if (mysqli_num_rows($r) == 1) {
         picture-in-picture"   allowfullscreen>
         </iframe>
         </div>
-        
         </div> 
         <div class="col-sm-12 col-md-4">
         <h1>' . $row['show_title'] . '</h1>
@@ -89,17 +88,18 @@ if (mysqli_num_rows($r) == 1) {
               </tr>
           </tbody>
         </table>
-        <hr>';
+        <hr>
+  ';
   if ($subscription == 'Premium') {
     echo '
         <a href="watch_show.php?id=' . $row['id'] . '&season=' . $season . '&episode=' . $episode . '"> <button type="button" class="btn btn-secondary btn-block" role="button"><h2>Watch now</h2></button></a>
         </div> 
-        ';
+    ';
   } else {
     echo '
           <a href="payment.php"> <button type="button" class="btn btn-secondary btn-block" role="button"><h3>Purchase premium</h3></button></a>
-        </div> 
-          ';
+          </div> 
+    ';
   }
 }
 

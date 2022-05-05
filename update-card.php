@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'Enter CVV.';
     }
 
-
     # On success new card details into 'users' database table.
     if (empty($errors)) {
         $q = "UPDATE users SET card_number='$cn', exp_month='$m', exp_year='$y', cvv='$cv' WHERE user_id={$_SESSION['user_id']}";

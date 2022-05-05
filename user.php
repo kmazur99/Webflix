@@ -16,22 +16,28 @@ include('redirect.php');
 
 # Error message pop-up
 if (isset($_GET['Message'])) {
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Error</h4>
-    <p> ' . $_GET['Message'] . ' </p>
-  <hr>
-<footer">
-</footer></div>  ';
+    echo '
+        <div class="alert alert-dark" role="alert">
+        <h4 class="alert-heading">Error</h4>
+        <p> ' . $_GET['Message'] . ' </p>
+        <hr>
+        <footer">
+        </footer>
+        </div>
+    ';
 }
 
 # Success message pop-up
 if (isset($_GET['Success'])) {
-    echo '<div class="alert alert-dark" role="alert">
-    <h4 class="alert-heading">Success</h4>
-    <p> ' . $_GET['Success'] . ' </p>
-  <hr>
-<footer">
-</footer></div>  ';
+    echo '
+        <div class="alert alert-dark" role="alert">
+        <h4 class="alert-heading">Success</h4>
+        <p> ' . $_GET['Success'] . ' </p>
+        <hr>
+        <footer">
+        </footer>
+        </div>
+    ';
 }
 
 # Retrieve user data from the database.
@@ -40,119 +46,122 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
         echo '
-        <title>Account - Webflix</title>
-        <br>
-    <div class="container">
-  <div class="row">
-      <div class="col-sm">
-	<div class="card card-dark mb-3">
-	    <div class="card-header"> 
-	          <h5 class="card-title">Account Details</h5>
-	    </div>
-	    <div class="card-body">
-	    <form>
-         <ul class="list-group list-group"> 
-    <li class="list-group-item">
-      <div class="form-group row">
-<label for="userName" class="col-sm-12 col-form-label"><strong>Name: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
-  </div>
-    </li>
-    ';
-        if ($row['subscription'] == 'Premium') {
-            echo '
-    <li class="list-group-item">
-    <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#cancel" style="float: right;">Cancel subscription</button>	 
-</label>			  
-     </div>
-   </li>
-   ';
-        } elseif ($row['subscription'] == 'Basic') {
-            echo '
-   <li class="list-group-item">
-    <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
-<a href="payment.php"> <button type="button" class="btn btn-secondary" role="button" style="float: right;">Purchase premium</button></a>		
-</label>	  
-     </div>
-   </li>
-   ';
-        }
-        echo '
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
-      </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="DOB" class="col-sm-12 col-form-label"><strong>Date of Birth: </strong>'  . $row['DOB'] . '</label> 			  
-      </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="Contact No." class="col-sm-12 col-form-label"><strong>Contact Number: </strong>'  . $row['contact_number'] . '</label> 			  
-      </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="country" class="col-sm-12 col-form-label"><strong>Country: </strong>'  . $row['country'] . '</label> 			  
-      </div>
-    </li>
-    <li class="list-group-item">
-     <div class="form-group row">
-<label for="regDate" class="col-sm-12 col-form-label"><strong>Account created: </strong>'  . $row['reg_date'] . '</label> 			  
-      </div>
-    </li>
-    </ul>
-    <br>
-<button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#password">Change Password</button>
-
-</form> 
-</div>
-</div>
-</div>
+            <title>Account - Webflix</title>
+            <br>
+            <div class="container">
+            <div class="row">
             <div class="col-sm">
             <div class="card card-dark mb-3">
             <div class="card-header"> 
-                  <h5 class="card-title">Payment Details</h5>
+            <h5 class="card-title">Account Details</h5>
             </div>
             <div class="card-body">
             <form>
-             <ul class="list-group list-group"> 
-        <li class="list-group-item">
-          <div class="form-group row">
-    <label for="cardHolder" class="col-sm-12 col-form-label"><strong>Card Holder: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
-      </div>
-        </li>
-               <li class="list-group-item">
-         <div class="form-group row">
-    <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>';
+            <ul class="list-group list-group"> 
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="userName" class="col-sm-12 col-form-label"><strong>Name: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
+            </div>
+            </li>
+        ';
+        if ($row['subscription'] == 'Premium') {
+            echo '
+                <li class="list-group-item">
+                <div class="form-group row">
+                <label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#cancel" style="float: right;">Cancel subscription</button>	 
+                </label>			  
+                </div>
+                </li>
+            ';
+        } elseif ($row['subscription'] == 'Basic') {
+            echo '
+                <li class="list-group-item">
+                <div class="form-group row">
+                <label for="email" class="col-sm-12 col-form-label"><strong>Subscription type: </strong>'  . $row['subscription'] . '
+                <a href="payment.php"> <button type="button" class="btn btn-secondary" role="button" style="float: right;">Purchase premium</button></a>		
+                </label>	  
+                </div>
+                </li>
+            ';
+        }
+        echo '
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="email" class="col-sm-12 col-form-label"><strong>Email: </strong>'  . $row['email'] . '</label> 			  
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="DOB" class="col-sm-12 col-form-label"><strong>Date of Birth: </strong>'  . $row['DOB'] . '</label> 			  
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="Contact No." class="col-sm-12 col-form-label"><strong>Contact Number: </strong>'  . $row['contact_number'] . '</label> 			  
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="country" class="col-sm-12 col-form-label"><strong>Country: </strong>'  . $row['country'] . '</label> 			  
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="regDate" class="col-sm-12 col-form-label"><strong>Account created: </strong>'  . $row['reg_date'] . '</label> 			  
+            </div>
+            </li>
+            </ul>
+            <br>
+            <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#password">Change Password</button>
+            </form> 
+            </div>
+            </div>
+            </div>
+            <div class="col-sm">
+            <div class="card card-dark mb-3">
+            <div class="card-header"> 
+            <h5 class="card-title">Payment Details</h5>
+            </div>
+            <div class="card-body">
+            <form>
+            <ul class="list-group list-group"> 
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="cardHolder" class="col-sm-12 col-form-label"><strong>Card Holder: </strong>' . $row['first_name'] . ' ' . $row['last_name'] . '</label> 
+            </div>
+            </li>
+            <li class="list-group-item">
+            <div class="form-group row">
+            <label for="cardNo" class="col-sm-12 col-form-label"><strong>Card Number: </strong>';
         echo wordwrap($row['card_number'], 4, " ", true);
-        echo '</label> 			  
-          </div>
-        </li>
-        <li class="list-group-item">
-         <div class="form-group row">
-    <label for="expDate" class="col-sm-12 col-form-label"><strong>Expiry Date: </strong>'  . $row['exp_month'] . ' / '  . $row['exp_year'] . '</label> 			  
-          </div>
-        </li>
-        </ul>
-        <br>
-        <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#card">Update Card</button>
-      </form> 
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      ';
+
+        echo '
+                </label> 			  
+                </div>
+                </li>
+                <li class="list-group-item">
+                <div class="form-group row">
+                <label for="expDate" class="col-sm-12 col-form-label"><strong>Expiry Date: </strong>'  . $row['exp_month'] . ' / '  . $row['exp_year'] . '</label> 			  
+                </div>
+                </li>
+                </ul>
+                <br>
+                <button type="button" class="btn btn-secondary btn-block" data-toggle="modal" data-target="#card">Update Card</button>
+                </form> 
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            ';
     }
+
     # Close database connection.
     mysqli_close($link);
-} 
-include ('footer.html');
+}
+
+include('footer.html');
 ?>
 
 <!-- Change password pop-up -->

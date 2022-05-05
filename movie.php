@@ -41,27 +41,27 @@ if (mysqli_num_rows($r) == 1) {
   $category = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
     echo '
-      <title>Webflix</title>
-        <br>
-        <div class="container-fluid">
-        <div class="row">
-        <div class="col-sm-12 col-md-1">
-        </div>
-	      <div class="col-sm-12 col-md-6">
-	      <div class="embed-responsive embed-responsive-16by9">
-	      <iframe class="embed-responsive-item" src=' . $row['preview'] . '?autoplay=1   
-        frameborder="0" allow="autoplay; 
-        encrypted-media; 
-        gyroscope; 
-        picture-in-picture"   allowfullscreen>
-        </iframe>
-        </div>
-        </div> 
-        <div class="col-sm-12 col-md-4">
-        <h1>' . $row['movie_title'] . '</h1>
-        <hr>
-        <p>' . $row['further_info'] . '</p>
-        <table class="table table-striped">
+          <title>Webflix</title>
+          <br>
+          <div class="container-fluid">
+          <div class="row">
+          <div class="col-sm-12 col-md-1">
+          </div>
+          <div class="col-sm-12 col-md-6">
+          <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src=' . $row['preview'] . '?autoplay=1   
+          frameborder="0" allow="autoplay; 
+          encrypted-media; 
+          gyroscope; 
+          picture-in-picture"   allowfullscreen>
+          </iframe>
+          </div>
+          </div> 
+          <div class="col-sm-12 col-md-4">
+          <h1>' . $row['movie_title'] . '</h1>
+          <hr>
+          <p>' . $row['further_info'] . '</p>
+          <table class="table table-striped">
 
           <tbody>
           <tr>
@@ -81,21 +81,22 @@ if (mysqli_num_rows($r) == 1) {
           <td><h6>' . $row['languages'] . '</h6></td>
           </tr>
           </tbody>
-        </table>
-        <hr>
+          </table>
+          <hr>
         ';
         if ($subscription == 'Premium') {
           echo'
-        <a href="watch_movie.php?id=' . $row['id'] . '"> <button type="button" class="btn btn-secondary btn-block" role="button"><h2>Watch now</h2></button></a>
-        </div>
-        ';
+              <a href="watch_movie.php?id=' . $row['id'] . '"> <button type="button" class="btn btn-secondary btn-block" role="button"><h2>Watch now</h2></button></a>
+              </div>
+          ';
         } else {
           echo'
-          <a href="payment.php"> <button type="button" class="btn btn-secondary btn-block" role="button"><h3>Purchase premium</h3></button></a>
-        </div> 
-        ';
+              <a href="payment.php"> <button type="button" class="btn btn-secondary btn-block" role="button"><h3>Purchase premium</h3></button></a>
+              </div> 
+          ';
   } 
 }
 # Close database connection.
 mysqli_close($link);
+
 include('footer.html');

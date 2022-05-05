@@ -5,9 +5,9 @@ include('includes/bootstrap.html');
 
 # Display navbar
 echo '
-  <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
-          <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
-        </nav>
+      <nav class="navbar navbar-expand-sm bg-dark" style="background-color: #ffffff00 !important;">
+      <a class="navbar-brand" href="home.php"><span style="color:#C72606; font-size: 36px;">Webflix</span></a>
+      </nav>
   ';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -126,16 +126,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($r) {
 
       $title = 'Success';
-      echo '<div class="container"><div class="alert alert-dark" role="alert">
-	   <h4 class="alert-heading">' . $title . '</h4>
-     <p>Your account has been registered successfully</p>
-      ';
       echo '
-     <hr>
-<footer">
-<a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
-  </footer></div></div>
- ';
+            <div class="container"><div class="alert alert-dark" role="alert">
+	          <h4 class="alert-heading">' . $title . '</h4>
+            <p>Your account has been registered successfully</p>
+            <hr>
+            <footer">
+            <a href="login.php"> <button type="button" class="btn btn-secondary" role="button">Log in</button></a>
+            </footer>
+            </div>
+            </div>
+          ';
+
       # unset values after completion
       unset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['pass1'], $_POST['pass2'], $_POST['contact_number'], $_POST['country'], $_POST['DOB'], $_POST['card_number'], $_POST['exp_month'], $_POST['exp_year'], $_POST['cvv']);
     }
@@ -152,8 +154,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo " <p> $msg </p>";
     }
     echo '
-<footer">
-  </footer></div></div>';
+          <footer">
+          </footer>
+          </div>
+          </div>
+        ';
     # Close database connection.
     mysqli_close($link);
   }
@@ -244,6 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 <br>
 <br>
+
 <?php
 include('footer.html');
 ?>

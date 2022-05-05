@@ -20,17 +20,19 @@ $categories_result = mysqli_query($link, $categories_query);
 
 # Display category dropdowns
 echo'
-<title>Movies - Webflix</title>
-  <br>
-  <div class="container-fluid">
-<select id="genre" name="genre" onchange="changeGenre(this.value)" style="float: right;">
-<option value=""disabled selected>Category</option>
-<option value="all">All</option>';
+    <title>Movies - Webflix</title>
+    <br>
+    <div class="container-fluid">
+    <select id="genre" name="genre" onchange="changeGenre(this.value)" style="float: right;">
+    <option value=""disabled selected>Category</option>
+    <option value="all">All</option>
+    ';
 
 # Add categories to the dropdown menu
 while ($row = mysqli_fetch_array($categories_result)) {
 echo'
-  <option value="'.$row['category_id'].'">'. $row['category_name'] . '</option>';
+    <option value="'.$row['category_id'].'">'. $row['category_name'] . '</option>
+    ';
 }
 echo' </select>';
 
@@ -63,30 +65,36 @@ $r = mysqli_query($link, $q);
 if (mysqli_num_rows($r) > 0) {
 
   echo'
-  <hr>
-  <div class="row">';
+      <hr>
+      <div class="row">
+      ';
   while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
     echo ' 
-      <div class="col" style="margin-top: 2rem";>
-		  <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
-			  <div class="card text-center border-0">
-        <a href="movie.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
-				<h5 class="card-title">' . $row['movie_title'] . '</h5>
-			  </div>
-		  </div>
-      </div>
+          <div class="col" style="margin-top: 2rem";>
+          <div class="card border-0 " style="width: 20rem; float: none; margin: 0 auto;">
+          <div class="card text-center border-0">
+          <a href="movie.php?id=' . $row['id'] . '"><img class="card-img-top" src=' . $row['img'] . ' alt="Movie"></a>
+          <h5 class="card-title">' . $row['movie_title'] . '</h5>
+          </div>
+          </div>
+          </div>
       ';
   }
-  echo'</div>
-  </div>
-  <br>
-  <br>';
+  echo'
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
+  ';
 
   # Close database connection.
   mysqli_close($link);
 }
+
 include('footer.html');
 ?>
+
 <!-- Display correct category -->
 <script>
 function changeGenre(genre) {
