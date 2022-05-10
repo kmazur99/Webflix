@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a>Already have an account? </a><a href="login.php"><span style="color:#C72606;">Sign in</span></a>
             <div style="text-align:center">
               <br>
-              <button type="submit" class="btn btn-secondary" name="register">Create Account</button>
+              <button type="submit" class="btn btn-secondary btn-block" name="register">Create Account</button>
             </div>
           </form>
         </div>

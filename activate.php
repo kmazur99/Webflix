@@ -116,7 +116,7 @@ if (isset($_GET['email'])) {
           <input type="hidden" name="fn" class="form-control" value="' . $fn . '" required>
           <input type="hidden" name="ln" class="form-control" value="' . $ln . '" required>
           </div>
-          <button type="submit" class="btn btn-secondary">Send activation email</button>
+          <button type="submit" class="btn btn-secondary btn-block">Send activation email</button>
           </form>
           </div>
           </div>

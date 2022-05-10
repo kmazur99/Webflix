@@ -75,7 +75,7 @@
               </div>
               <br>
               <div style="text-align:center">
-                <button type="submit" class="btn btn-secondary">Sign In</button>
+                <button type="submit" class="btn btn-secondary btn-block">Sign In</button>
               </div>
             </form>
           </div>
