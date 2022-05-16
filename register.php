@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   else {
     $title = 'Error';
     echo '<div class="container"><div class="alert alert-dark" role="alert">
-	   <h4 class="alert-heading">' . $title . '</h4>';
+	   <h4 class="alert-heading">' . $title . '</h4><hr>';
     foreach ($errors as $msg) {
       echo " <p> $msg </p>";
     }
